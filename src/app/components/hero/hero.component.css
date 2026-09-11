@@ -1,0 +1,243 @@
+.hero-section {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--header-height) + 36px) 16px 45px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 30%, rgba(242, 240, 239, 0.95) 0%, rgba(255, 253, 249, 0.7) 100%);
+}
+
+.hero-backdrop-glow {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  max-width: 90vw;
+  height: 500px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.ganesh-crest-wrapper {
+  margin-bottom: 20px;
+}
+
+.ganesh-sacred-badge {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #FFFDF9;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35), 0 0 0 3px rgba(212, 175, 55, 0.4);
+  padding: 6px;
+  transition: transform 0.4s ease;
+}
+
+.ganesh-sacred-badge:hover {
+  transform: scale(1.06) rotate(2deg);
+  box-shadow: 0 12px 30px rgba(212, 175, 55, 0.5);
+}
+
+.ganesh-sacred-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.shloka-text {
+  font-size: 1.2rem;
+  color: var(--maroon-royal);
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.shloka-subtext {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  font-style: italic;
+  line-height: 1.45;
+  padding: 0 10px;
+}
+
+.subtle-divider {
+  color: var(--gold-primary);
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  display: block;
+  margin: 10px 0 6px;
+}
+
+.family-honor-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.honor-sub {
+  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  color: var(--text-dark);
+  font-style: italic;
+}
+
+.couple-title-area {
+  margin: 20px 0 16px;
+}
+
+.couple-name-line {
+  font-size: clamp(2.1rem, 7.5vw, 3.6rem);
+  font-family: var(--font-serif);
+  color: var(--maroon-royal);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(102, 0, 51, 0.08);
+  line-height: 1.15;
+}
+
+.wedding-knot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+
+.knot-line {
+  height: 1px;
+  width: 45px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+.knot-symbol {
+  font-family: var(--font-script);
+  font-size: 1.9rem;
+  color: var(--gold-dark);
+  line-height: 1;
+}
+
+.date-badge-wrapper {
+  margin: 14px 0 24px;
+}
+
+.date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--gold-border);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-subtle);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--maroon-royal);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.dot-separator {
+  color: var(--gold-primary);
+}
+
+.countdown-container {
+  background: var(--bg-ivory-card);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  padding: 18px 14px;
+  margin: 0 auto 30px;
+  max-width: 580px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(10px);
+}
+
+.countdown-title {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.count-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-sm);
+  flex: 1;
+  min-width: 0;
+  padding: 8px 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  text-align: center;
+}
+
+.count-val {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 5vw, 2rem);
+  font-weight: 700;
+  color: var(--maroon-royal);
+  line-height: 1.1;
+}
+
+.count-lbl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.count-separator {
+  font-size: clamp(1rem, 3.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--gold-primary);
+  padding-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+  .btn-hero-action {
+    width: 100%;
+    min-height: 48px;
+    font-size: 1rem;
+  }
+}

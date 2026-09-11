@@ -1,0 +1,188 @@
+<section id="invitation-unfold" class="envelope-experience-section">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="badge badge-gold">॥ शुभ निमंत्रण ॥</span>
+      <h2 class="section-title font-serif">Royal Wedding Invitation</h2>
+      <p class="section-subtitle font-sans">
+        A formal invitation from the Katyal & Bhandari Families to grace the auspicious occasion
+      </p>
+    </div>
+
+    <!-- Main Envelope Experience Stage -->
+    <div class="inner-envelope-stage-container">
+      
+      <div class="envelope-interactive-rig" [class.is-open]="isEnvelopeOpen()">
+
+        <!-- 1. Corner Floral Bouquets (Active on closed envelope) -->
+        <div #topBouquet class="inner-flower-bouquet bouquet-top-right">
+          <img src="assets/images/bouquet.png" alt="Royal floral decor" class="bouquet-img">
+        </div>
+        <div #bottomBouquet class="inner-flower-bouquet bouquet-bottom-left">
+          <img src="assets/images/bouquet.png" alt="Royal floral decor" class="bouquet-img">
+        </div>
+
+        <!-- 2. STEADY ENVELOPE SLEEVE & FLAP UNIT -->
+        <div #envelopeBox class="envelope-steady-box" (click)="!isEnvelopeOpen() ? openEnvelope() : null">
+          
+          <!-- Back Interior Lining -->
+          <div class="envelope-back-lining">
+            <div class="inner-gold-watermark font-devanagari">शुभ विवाह</div>
+          </div>
+
+          <!-- FRONT SLEEVE POCKET -->
+          <div #pocket class="sleeve-pocket-base">
+            <div class="sleeve-pattern-overlay"></div>
+            <div class="sleeve-gold-trim"></div>
+            <div class="sleeve-notched-mouth"></div>
+          </div>
+
+          <!-- UPPER 3D FOLDING FLAP (Layered under seal, flips up 180deg) -->
+          <div 
+            #flap 
+            class="sleeve-top-flap" 
+            [class.open-flap-transparent]="isEnvelopeOpen()"
+            (click)="toggleEnvelope(); $event.stopPropagation()"
+            [title]="isEnvelopeOpen() ? 'Click upper fold to fold envelope' : 'Click to open envelope'"
+            role="button"
+            tabindex="0"
+            [attr.aria-label]="isEnvelopeOpen() ? 'Click upper fold to fold envelope' : 'Click to open envelope'">
+            <div class="flap-surface">
+              <div class="flap-crease-lines"></div>
+              @if (isEnvelopeOpen()) {
+                <div class="flap-refold-hint font-devanagari">
+                  <span>▲ संपुट बंद करें (Click fold to re-close)</span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- 3D BURGUNDY & GOLD WAX SEAL (STRICTLY ON TOP OF FLAP TIP) -->
+          <button 
+            #seal
+            type="button" 
+            class="sleeve-wax-seal" 
+            (click)="openEnvelope(); $event.stopPropagation()" 
+            aria-label="Open Wedding Invitation Envelope"
+            title="Tap Royal Wax Seal to Open">
+            <div class="seal-inner-emboss">
+              <span class="seal-monogram font-script">D & V</span>
+              <span class="seal-hindi font-devanagari">शुभ विवाह</span>
+            </div>
+            <div class="seal-pulse-glow"></div>
+          </button>
+
+        </div>
+
+        <!-- 3. ROYAL WEDDING INVITATION LETTER (Reveals steadily when opened) -->
+        <div #letter class="sliding-parchment-letter">
+          <div class="card-gilded-border">
+            
+            <!-- Ganesha Invocation on Card -->
+            <div class="letter-ganesh-header">
+              <span class="letter-om font-devanagari">卐 ॥ श्री गणेशाय नमः ॥ 卐</span>
+              <p class="letter-shloka">
+                "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥"
+              </p>
+            </div>
+
+            <div class="letter-content-body">
+              <p class="greeting-line font-serif">
+                With the divine grace of the Almighty and blessings of our ancestors,
+              </p>
+
+              <h2 class="letter-family-title">
+                Shri Balwinder Kumar & Shri Ajay Bhandari
+              </h2>
+              <p class="families-sub">Together with the Katyal & Bhandari Families</p>
+
+              <p class="letter-cordially font-serif">
+                Cordially invite you to celebrate the joyous wedding union of their beloved children
+              </p>
+
+              <!-- Couple Centerpiece -->
+              <div class="letter-couple-highlight">
+                <div class="person-box">
+                  <h3 class="royal-name">Dhruv</h3>
+                  <span class="family-tag">Son of Shri Balwinder Kumar (Katyal Family)</span>
+                </div>
+
+                <div class="wedding-knot-badge">
+                  <span class="knot-script">&</span>
+                  <span class="knot-txt">Weds</span>
+                </div>
+
+                <div class="person-box">
+                  <h3 class="royal-name">Vaishnavi</h3>
+                  <span class="family-tag">Daughter of Shri Ajay Bhandari (Bhandari Family)</span>
+                </div>
+              </div>
+
+              <!-- Sacred Pheras & Holy Union Mandap Artwork Card -->
+              <div class="pheras-feature-card">
+                <div class="pheras-jharokha-frame">
+                  <img 
+                    src="assets/images/couple.jpg" 
+                    alt="Dhruv and Vaishnavi Sacred Wedding Pheras & Union" 
+                    class="pheras-couple-img">
+                  <div class="pheras-frame-overlay"></div>
+                  <div class="pheras-badge-ribbon">
+                    <span class="pheras-shloka-text font-devanagari">॥ सप्तपदी • पाणिग्रहण संस्कार ॥</span>
+                  </div>
+                </div>
+                <div class="pheras-caption-box">
+                  <h4 class="pheras-title font-serif">Two Souls United by Sacred Vows (सात फेरे)</h4>
+                  <p class="pheras-desc">
+                    "Taking seven sacred steps around the holy fire to embark on a lifelong journey of love, trust, and companionship."
+                  </p>
+                </div>
+              </div>
+
+              <!-- Ceremonies Summary Inside Letter -->
+              <div class="letter-events-list">
+                <div class="event-summary-item mehendi-accent">
+                  <span class="item-emoji">🌿</span>
+                  <div class="item-info">
+                    <strong>Sangeet / Mehandi:</strong> Friday, 16th Jan 2026, 6:00 PM • White Rose Banquet
+                  </div>
+                </div>
+                <div class="event-summary-item haldi-accent">
+                  <span class="item-emoji">🌼</span>
+                  <div class="item-info">
+                    <strong>Haldi:</strong> Saturday, 17th Jan 2026, 11:00 AM • At Home, Ghaziabad
+                  </div>
+                </div>
+                <div class="event-summary-item vivah-accent">
+                  <span class="item-emoji">🪔</span>
+                  <div class="item-info">
+                    <strong>Shubh Vivah:</strong> Saturday, 17th Jan 2026, Baraat 9:00 PM • Vasundhara Farm
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Regards & Celebrations Link -->
+              <div class="letter-footer">
+                <p class="closing-regards">
+                  With Warm Regards & Best Compliments, <br>
+                  <strong>Balwinder Kumar (Katyal Family - Ghaziabad) & Ajay Bhandari (Bhandari Family - Zirakpur)</strong>
+                </p>
+
+                <div class="letter-action-btns">
+                  <a href="#events" class="btn btn-primary">
+                    <span>View Celebrations Itinerary</span>
+                    <span>↓</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

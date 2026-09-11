@@ -1,0 +1,269 @@
+.events-section {
+  background: var(--bg-ivory-light);
+  padding: 70px 16px;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  margin: 12px 0 8px;
+}
+
+.section-subtitle {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .events-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+}
+
+.event-card {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--gold-border);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+}
+
+.event-header-banner {
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.mehendi-theme .event-header-banner { background: #F0F7F1; }
+.haldi-theme .event-header-banner { background: #FFF9E6; }
+.wedding-theme .event-header-banner { background: #FCF0F2; }
+
+.function-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+}
+
+.royal-badge { color: var(--maroon-royal); }
+.dress-tag { font-size: 0.78rem; font-weight: 600; color: var(--maroon-royal); }
+
+.event-body {
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.ceremony-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--mehendi-bg);
+  border: 1px solid rgba(41, 91, 48, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.haldi-icon {
+  background: var(--haldi-bg);
+  border-color: rgba(217, 130, 0, 0.3);
+}
+
+.wedding-icon {
+  background: var(--maroon-soft);
+  border-color: rgba(102, 0, 51, 0.3);
+}
+
+.ceremony-emoji { font-size: 1.4rem; }
+
+.event-name {
+  font-size: 1.5rem;
+  color: var(--maroon-royal);
+  margin-bottom: 4px;
+}
+
+.event-tagline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+.event-meta-box {
+  background: var(--bg-ivory-warm);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  text-align: left;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.meta-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.meta-icon {
+  font-size: 1.15rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.meta-val {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.highlight-time {
+  color: var(--maroon-royal);
+  font-size: 1rem;
+}
+
+.venue-title { color: var(--maroon-royal); }
+.meta-sub { font-size: 0.8rem; color: var(--text-muted); }
+
+.event-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-map {
+  background: #FAF9F8;
+  border: 1.5px solid var(--burgundy-primary);
+  color: var(--burgundy-primary);
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(102, 0, 51, 0.08);
+  transition: all 0.25s ease;
+  touch-action: manipulation;
+}
+
+.btn-map:hover {
+  background: var(--burgundy-primary);
+  color: #FAF9F8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(102, 0, 51, 0.25);
+}
+
+.btn-map:active {
+  transform: translateY(0);
+}
+
+.btn-map-gold {
+  background: #FAF9F8;
+  border: 1.5px solid var(--burgundy-primary);
+  color: var(--burgundy-primary);
+}
+
+.calendar-btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-cal {
+  flex: 1;
+  background: #FFFFFF;
+  border: 1px solid var(--gold-border);
+  color: var(--text-muted);
+  min-height: 38px;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.btn-cal:hover, .btn-cal:active {
+  background: var(--gold-light);
+  color: var(--maroon-royal);
+}
+
+.home-badge {
+  background: #FAF6ED;
+  border: 1px dashed var(--gold-dark);
+  padding: 10px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+.elder-navigation-note {
+  background: #FFFDF9;
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: var(--shadow-subtle);
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  line-height: 1.5;
+}
+
+.note-icon {
+  font-size: 1.2rem;
+  color: var(--gold-dark);
+  flex-shrink: 0;
+  margin-top: 1px;
+}

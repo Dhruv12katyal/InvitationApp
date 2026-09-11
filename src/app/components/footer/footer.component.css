@@ -1,0 +1,83 @@
+.wedding-footer {
+  background: #4A0025;
+  color: #FFFDF9;
+  padding: 55px 16px 36px;
+  text-align: center;
+  position: relative;
+  border-top: 3px solid var(--gold-primary);
+}
+
+.footer-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.om-tag {
+  font-size: 1.35rem;
+  color: var(--gold-light);
+  display: inline-block;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.footer-couple-name {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: #FFFDF9;
+  margin-bottom: 4px;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--gold-light);
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+.footer-divider {
+  width: 70px;
+  height: 1px;
+  background: var(--gold-primary);
+  margin: 22px auto;
+  opacity: 0.6;
+}
+
+.family-names-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.family-side h4 {
+  color: #FFFDF9;
+  font-size: 1.15rem;
+  margin-bottom: 2px;
+}
+
+.family-side p {
+  font-size: 0.82rem;
+  color: rgba(255, 253, 249, 0.75);
+}
+
+.center-heart {
+  font-size: 1.2rem;
+}
+
+.closing-blessing {
+  font-family: var(--font-devanagari);
+  color: var(--gold-light);
+  font-size: 0.98rem;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+.copy-note {
+  font-size: 0.78rem;
+  color: rgba(255, 253, 249, 0.5);
+  border-top: 1px solid rgba(255, 253, 249, 0.1);
+  padding-top: 18px;
+}

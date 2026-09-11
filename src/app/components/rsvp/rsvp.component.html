@@ -1,0 +1,125 @@
+<section id="rsvp" class="rsvp-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="gold-badge">Honored Guests</span>
+      <h2 class="section-title">Confirm Your Attendance</h2>
+      <p class="section-subtitle">
+        Please let us know by 5th January 2026 so we can warmly welcome you and ensure your comfortable stay.
+      </p>
+    </div>
+
+    <div class="rsvp-card-container">
+      <!-- 1-Click WhatsApp Form Card -->
+      <div class="rsvp-form-card">
+
+        <!-- Header Banner -->
+        <div class="whatsapp-badge-banner">
+          <span class="wa-icon">💬</span>
+          <span class="wa-text">1-Click WhatsApp RSVP to Dhruv</span>
+        </div>
+
+        <form (ngSubmit)="sendWhatsAppRsvp()" class="form-grid-layout">
+
+          <!-- Full Name Field -->
+          <div class="form-field">
+            <label for="guestName" class="field-label">Your Full Name / Family Name <span
+                class="required-mark">*</span></label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input id="guestName" type="text" [(ngModel)]="guestName" name="guestName"
+                placeholder="e.g. Vikas Sharma & Family" class="form-input" required>
+            </div>
+          </div>
+
+          <!-- Attending Guests Field -->
+          <div class="form-field">
+            <label for="guestCount" class="field-label">Number of Attending Guests</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👥</span>
+              <select id="guestCount" [(ngModel)]="guestCount" name="guestCount" class="form-input form-select">
+                <option value="1">1 Person</option>
+                <option value="2">2 Persons</option>
+                <option value="3">3 Persons</option>
+                <option value="4">4 Persons</option>
+                <option value="5+">5+ Family Members</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Functions Attending Radio Options -->
+          <div class="form-field full-row">
+            <label class="field-label">Which Celebrations Will You Attend?</label>
+            <div class="attendance-options-grid">
+
+              <label class="radio-card" [class.selected]="attendingOption === 'all'">
+                <input type="radio" [(ngModel)]="attendingOption" name="attendingOption" value="all"
+                  class="radio-input">
+                <div class="radio-content">
+                  <span class="radio-symbol">🌟</span>
+                  <span class="radio-title">All 3 Celebrations</span>
+                  <span class="radio-sub">Sangeet/Mehandi, Haldi & Vivah</span>
+                </div>
+              </label>
+
+              <label class="radio-card" [class.selected]="attendingOption === 'wedding'">
+                <input type="radio" [(ngModel)]="attendingOption" name="attendingOption" value="wedding"
+                  class="radio-input">
+                <div class="radio-content">
+                  <span class="radio-symbol">👑</span>
+                  <span class="radio-title">Shubh Vivah Only</span>
+                  <span class="radio-sub">17th Jan Night (Baraat)</span>
+                </div>
+              </label>
+
+              <label class="radio-card" [class.selected]="attendingOption === 'mehendi-wedding'">
+                <input type="radio" [(ngModel)]="attendingOption" name="attendingOption" value="mehendi-wedding"
+                  class="radio-input">
+                <div class="radio-content">
+                  <span class="radio-symbol">🌺</span>
+                  <span class="radio-title">Sangeet/Mehandi & Vivah</span>
+                  <span class="radio-sub">16th & 17th Jan</span>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Optional Message -->
+          <!-- <div class="form-field full-row">
+            <label for="specialNote" class="field-label">Optional Warm Note / Food Preference</label>
+            <div class="input-wrapper">
+              <span class="input-icon">✍️</span>
+              <input 
+                id="specialNote" 
+                type="text" 
+                [(ngModel)]="specialNote" 
+                name="specialNote" 
+                placeholder="e.g. Excited to celebrate with Katyal & Bhandari families!" 
+                class="form-input">
+            </div>
+          </div> -->
+
+          <!-- Action Button -->
+          <div class="form-field full-row btn-container">
+            <button type="submit" [disabled]="!guestName.trim()" class="btn btn-whatsapp btn-whatsapp-large">
+              <span>Send RSVP via WhatsApp to Dhruv (+91 96545 71900)</span>
+              <span class="send-arrow">➔</span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Direct Contact Footer -->
+        <div class="direct-contact-footer">
+          <span class="phone-icon">📞</span>
+          <p class="direct-contact-note">
+            Prefer a direct phone call? Reach out to <strong>Dhruv</strong> at
+            <a href="tel:+919654571900" class="phone-link">+91 96545 71900</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

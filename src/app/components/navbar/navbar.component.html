@@ -1,0 +1,192 @@
+<!-- Top Auspicious Ribbon -->
+<div class="top-auspicious-ribbon">
+  <div class="ribbon-content">
+    <span class="ribbon-star">✦</span>
+    <span class="ribbon-text font-devanagari">॥ ॐ श्री गणेशाय नमः ॥</span>
+    <span class="ribbon-dot">•</span>
+    <span class="ribbon-text font-devanagari">॥ शुभ विवाह ॥</span>
+    <span class="ribbon-dot">•</span>
+    <span class="ribbon-sub">Katyal & Bhandari Families</span>
+    <span class="ribbon-star">✦</span>
+  </div>
+</div>
+
+<!-- Main Floating Glassmorphic Navbar -->
+<header class="navbar-wrapper" [class.scrolled]="isScrolled()">
+  <div class="nav-floating-island">
+    
+    <!-- Royal Monogram Crest Logo -->
+    <a href="#hero" (click)="scrollToSection('hero', $event)" class="royal-brand-logo" title="Dhruv & Vaishnavi Wedding">
+      <div class="logo-crest-badge">
+        <svg class="crest-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="3 2"/>
+          <circle cx="50" cy="50" r="41" stroke="url(#goldGrad)" stroke-width="1"/>
+          
+          <path d="M50 8 L54 16 L46 16 Z" fill="url(#goldGrad)"/>
+          
+          <text x="36" y="58" font-family="'Cinzel Decorative', 'Playfair Display', serif" font-size="28" font-weight="bold" fill="url(#maroonGrad)" text-anchor="middle">D</text>
+          <text x="50" y="53" font-family="'Great Vibes', cursive" font-size="19" fill="url(#goldGrad)" text-anchor="middle">&</text>
+          <text x="64" y="58" font-family="'Cinzel Decorative', 'Playfair Display', serif" font-size="28" font-weight="bold" fill="url(#maroonGrad)" text-anchor="middle">V</text>
+          
+          <text x="50" y="77" font-family="'Plus Jakarta Sans', sans-serif" font-size="6.5" font-weight="700" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="1">16•17 JAN 2026</text>
+
+          <defs>
+            <linearGradient id="goldGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#F3E5AB"/>
+              <stop offset="35%" stop-color="#D4AF37"/>
+              <stop offset="70%" stop-color="#AA771C"/>
+              <stop offset="100%" stop-color="#D4AF37"/>
+            </linearGradient>
+            <linearGradient id="maroonGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#660033"/>
+              <stop offset="100%" stop-color="#58111A"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="logo-title-group">
+        <span class="logo-couple-names">Dhruv & Vaishnavi</span>
+        <span class="logo-tagline">Ghaziabad, Uttar Pradesh</span>
+      </div>
+    </a>
+
+    <!-- Desktop Interactive Navigation Links with ScrollSpy Active Pill -->
+    <nav class="nav-links-track" aria-label="Main Navigation">
+      @for (item of navItems; track item.id) {
+        <a 
+          [href]="'#' + item.id" 
+          (click)="scrollToSection(item.id, $event)"
+          class="nav-tab-item"
+          [class.active]="activeSection() === item.id"
+          [class.special-rsvp]="item.isSpecial">
+          <span class="tab-icon">{{ item.icon }}</span>
+          <span class="tab-label">{{ item.label }}</span>
+          @if (activeSection() === item.id && !item.isSpecial) {
+            <span class="active-glow-dot"></span>
+          }
+        </a>
+      }
+    </nav>
+
+    <!-- Header Actions (Live Sitar Music Toggle + Mobile Menu Trigger) -->
+    <div class="nav-actions-group">
+      
+      <!-- Live Sitar Music Toggle Button (High-Priority Touch Target) -->
+      <button 
+        type="button" 
+        class="action-pill-btn music-pill-btn"
+        [class.playing]="audioService.isPlaying()"
+        (click)="toggleMusic($event)"
+        title="Toggle Soulful Wedding Music"
+        aria-label="Toggle Soulful Wedding Music">
+        <span class="btn-icon">🪕</span>
+        <span class="btn-text">{{ audioService.isPlaying() ? 'Music ON' : 'Music OFF' }}</span>
+        @if (audioService.isPlaying()) {
+          <div class="equalizer-bars">
+            <span class="eq-bar bar-1"></span>
+            <span class="eq-bar bar-2"></span>
+            <span class="eq-bar bar-3"></span>
+          </div>
+        }
+      </button>
+
+      <!-- Mobile Menu Toggle Button (High-Priority Touch Target) -->
+      <button 
+        type="button" 
+        class="mobile-menu-trigger" 
+        (click)="toggleMobileMenu($event)"
+        [class.open]="isMobileMenuOpen()"
+        aria-label="Toggle Navigation Menu"
+        [attr.aria-expanded]="isMobileMenuOpen()">
+        <span class="menu-bar bar-top"></span>
+        <span class="menu-bar bar-mid"></span>
+        <span class="menu-bar bar-bot"></span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Fullscreen / Drawer Tapestry Mobile Menu -->
+  @if (isMobileMenuOpen()) {
+    <div class="mobile-drawer-backdrop" (click)="closeMobileMenu($event)">
+      <div class="mobile-drawer-card" (click)="$event.stopPropagation()">
+        
+        <!-- Drawer Header with Couple Crest -->
+        <div class="drawer-crest-header">
+          <div class="drawer-monogram-ring">
+            <span class="drawer-om font-devanagari">॥ शुभ विवाह ॥</span>
+            <h3 class="drawer-names font-serif">Dhruv & Vaishnavi</h3>
+            <span class="drawer-date">16th & 17th January 2026 • Ghaziabad</span>
+          </div>
+          <button type="button" (click)="closeMobileMenu($event)" class="drawer-close-btn" aria-label="Close menu">✕</button>
+        </div>
+
+        <!-- Mobile Navigation List -->
+        <div class="drawer-nav-list">
+          @for (item of navItems; track item.id) {
+            <a 
+              [href]="'#' + item.id" 
+              (click)="scrollToSection(item.id, $event)"
+              class="drawer-nav-card"
+              [class.active]="activeSection() === item.id"
+              [class.rsvp-card]="item.isSpecial">
+              <span class="card-icon">{{ item.icon }}</span>
+              <div class="card-text-group">
+                <span class="card-title">{{ item.label }}</span>
+                <span class="card-subtitle">
+                  @switch (item.id) {
+                    @case ('hero') { Welcome & Live Muhurat Countdown }
+                    @case ('invitation-unfold') { 3D Sealed Royal Envelope & Sacred Pheras }
+                    @case ('couple') { Meet Dhruv & Vaishnavi }
+                    @case ('events') { Sangeet/Mehandi, Haldi & Shubh Vivah Schedule }
+                    @case ('rsvp') { Instant WhatsApp Confirmation }
+                  }
+                </span>
+              </div>
+              <span class="card-chevron">➔</span>
+            </a>
+          }
+        </div>
+
+        <!-- Drawer Quick Actions (Music & Call) -->
+        <div class="drawer-quick-actions">
+          <button 
+            type="button" 
+            (click)="toggleMusic($event)" 
+            class="drawer-action-btn sitar-toggle-btn"
+            [class.active]="audioService.isPlaying()">
+            <span>🪕 {{ audioService.isPlaying() ? 'Wedding Music Playing' : 'Play Soulful Music' }}</span>
+          </button>
+          <a href="tel:+919654571900" class="drawer-action-btn call-dhruv-btn">
+            <span>📞 Call Dhruv (+91 96545 71900)</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  }
+</header>
+
+<!-- Modern Interactive Floating Mobile Bottom Dock -->
+<nav class="mobile-bottom-dock" aria-label="Quick Mobile Navigation">
+  <div class="dock-container">
+    @for (item of navItems; track item.id) {
+      <button 
+        type="button" 
+        (click)="scrollToSection(item.id, $event)"
+        class="dock-tab-btn"
+        [class.active]="activeSection() === item.id"
+        [class.special-tab]="item.isSpecial"
+        [attr.aria-label]="item.label">
+        <span class="dock-icon-wrapper">
+          <span class="dock-icon">{{ item.icon }}</span>
+          @if (activeSection() === item.id) {
+            <span class="dock-glow-indicator"></span>
+          }
+        </span>
+        <span class="dock-label">{{ item.shortLabel }}</span>
+      </button>
+    }
+  </div>
+</nav>

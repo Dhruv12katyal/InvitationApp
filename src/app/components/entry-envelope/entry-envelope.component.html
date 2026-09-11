@@ -1,0 +1,165 @@
+<!-- Grand Royal Wedding Invitation Card Roll-Out Experience (Perfect Viewport Centering) -->
+<div #overlay class="grand-card-overlay" (click)="!isOpening() ? openCard() : null">
+  
+  <!-- Ambient Shimmer Particles -->
+  <div class="ambient-shimmer-particles">
+    <span class="p-star p1">✦</span>
+    <span class="p-star p2">✧</span>
+    <span class="p-star p3">✦</span>
+    <span class="p-star p4">✧</span>
+    <span class="p-star p5">✦</span>
+  </div>
+
+  <div #stage class="card-ceremony-stage">
+
+    <!-- Top Headline (Fades out when card rolls out) -->
+    <div #headerText class="ceremony-top-header">
+      <h2 class="header-script-title font-script">A Sacred Invitation Awaits...</h2>
+      <p class="header-sub-tag font-devanagari">॥ ॐ श्री गणेशाय नमः ॥</p>
+    </div>
+
+    <!-- Central Interactive Sleeve & Bouquet Composition -->
+    <div class="sleeve-card-composition">
+
+      <!-- TOP-RIGHT FLOWER BOUQUET (Transparent PNG, Hides on card open) -->
+      <div #topBouquet class="flower-bouquet bouquet-top-right">
+        <img src="assets/images/bouquet.png" alt="Wedding Floral Bouquet" class="bouquet-img">
+      </div>
+
+      <!-- BOTTOM-LEFT FLOWER BOUQUET (Transparent PNG, Hides on card open) -->
+      <div #bottomBouquet class="flower-bouquet bouquet-bottom-left">
+        <img src="assets/images/bouquet.png" alt="Wedding Floral Bouquet" class="bouquet-img">
+      </div>
+
+      <!-- ENVELOPE SLEEVE CONTAINER (Dims to minimal opacity on open) -->
+      <div #envelopeBox class="card-sleeve-box">
+
+        <!-- 1. BACK SLEEVE LINING -->
+        <div class="sleeve-back-wall">
+          <div class="sleeve-inner-lining"></div>
+        </div>
+
+        <!-- 2. FRONT SLEEVE POUCH (Dims when card emerges) -->
+        <div #pocket class="sleeve-front-pouch">
+          <div class="pouch-crease-left"></div>
+          <div class="pouch-crease-right"></div>
+          <div class="pouch-crease-bottom"></div>
+        </div>
+
+        <!-- 3. TOP FOLDING FLAP (Flips Open in 3D) -->
+        <div #flap class="sleeve-top-flap">
+          <div class="flap-surface">
+            <div class="flap-crease-lines"></div>
+          </div>
+        </div>
+
+        <!-- 4. 3D BURGUNDY & GOLD WAX SEAL -->
+        <button 
+          #seal
+          type="button" 
+          class="sleeve-wax-seal" 
+          (click)="openCard()" 
+          title="Tap to Break Royal Wax Seal">
+          <div class="seal-inner-emboss">
+            <span class="seal-monogram font-script">D & V</span>
+            <span class="seal-hindi font-devanagari">शुभ विवाह</span>
+          </div>
+          <div class="seal-pulse-glow"></div>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Action Prompt (Fades out on open) -->
+    <div #bottomPrompt class="ceremony-bottom-prompt" (click)="openCard()">
+      <p class="click-to-open-label font-serif">CLICK TO OPEN...</p>
+    </div>
+
+    <!-- 5. GRAND ROYAL WEDDING INVITATION CARD (Centered in Screen via GSAP) -->
+    <div #weddingCard class="grand-wedding-card">
+      <div class="card-parchment-frame">
+        
+        <!-- Ornate Corner Gold Flourishes -->
+        <div class="gold-corner c-tl">❦</div>
+        <div class="gold-corner c-tr">❦</div>
+        <div class="gold-corner c-bl">❦</div>
+        <div class="gold-corner c-br">❦</div>
+
+        <!-- Top Auspicious Ganesha Invocatory Crest -->
+        <div class="card-ganesh-header">
+          <span class="ganesh-om-symbol font-devanagari">卐 ॥ श्री गणेशाय नमः ॥ 卐</span>
+          <p class="ganesh-shloka font-serif">"वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥"</p>
+        </div>
+
+        <!-- Main Invitation Body (Flex Spaced for Complete View at Once) -->
+        <div class="card-main-content">
+          
+          <!-- Auspicious Tag -->
+          <div class="shubh-vivah-ribbon font-devanagari">
+            <span>॥ शुभ विवाह ॥</span>
+          </div>
+          
+          <!-- Parents' Invocation -->
+          <div class="parents-invitation-block">
+            <p class="parents-honor-line">
+              With divine blessings of our beloved elders & ancestors, <br>
+              <strong>Shri Balwinder Kumar (Katyal Family)</strong> & <br>
+              <strong>Shri Ajay Bhandari (Bhandari Family)</strong>
+            </p>
+            <p class="cordial-request-text font-serif">
+              cordially invite you to celebrate the holy wedding union of
+            </p>
+          </div>
+
+          <!-- Centerpiece Couple Typography -->
+          <div class="couple-spotlight-banner">
+            <div class="couple-name-box">
+              <span class="c-name groom font-serif">Dhruv</span>
+              <span class="family-sub">Katyal Family</span>
+            </div>
+            
+            <div class="couple-knot-center">
+              <span class="c-ampersand font-script">&</span>
+              <span class="knot-sub font-devanagari">संग</span>
+            </div>
+            
+            <div class="couple-name-box">
+              <span class="c-name bride font-serif">Vaishnavi</span>
+              <span class="family-sub">Bhandari Family</span>
+            </div>
+          </div>
+
+          <!-- Sacred 7 Pheras Artwork Showcase -->
+          <div class="pheras-vignette-box">
+            <div class="pheras-jharokha-arch">
+              <img src="assets/images/couple.jpg" alt="Dhruv & Vaishnavi Sacred Wedding Pheras" class="pheras-img">
+              <div class="pheras-jharokha-overlay"></div>
+              <div class="pheras-tag font-devanagari">॥ सप्तपदी • सात फेरे ॥</div>
+            </div>
+          </div>
+
+          <!-- Auspicious Dates Summary Badge -->
+          <div class="venue-location-badge">
+            <span class="cal-ico">🗓️</span>
+            <span class="dates-text">16th & 17th January 2026 • Ghaziabad, Uttar Pradesh</span>
+          </div>
+
+          <!-- Progress Bar & Immediate Enter CTA -->
+          <div class="card-enter-action-group">
+            <div class="reading-progress-track">
+              <div class="reading-progress-bar"></div>
+            </div>
+            <button type="button" class="btn-enter-website" (click)="enterCelebrations(); $event.stopPropagation()">
+              <span>Explore Full Wedding Celebrations</span>
+              <span class="arrow-ico">→</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
