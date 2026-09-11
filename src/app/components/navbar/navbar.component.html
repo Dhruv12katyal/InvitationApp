@@ -6,7 +6,7 @@
     <span class="ribbon-dot">•</span>
     <span class="ribbon-text font-devanagari">॥ शुभ विवाह ॥</span>
     <span class="ribbon-dot">•</span>
-    <span class="ribbon-sub">Katyal & Bhandari Families</span>
+    <span class="ribbon-sub">Katyal Family (Ghaziabad)</span>
     <span class="ribbon-star">✦</span>
   </div>
 </div>
@@ -72,6 +72,26 @@
     <!-- Header Actions (Live Sitar Music Toggle + Mobile Menu Trigger) -->
     <div class="nav-actions-group">
       
+      <!-- Small Icon-Only WhatsApp Button -->
+      <a 
+        href="https://wa.me/919654571900?text=Warm%20wishes%20and%20heartiest%20congratulations%20Dhruv%20%26%20Vaishnavi!" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="nav-icon-btn nav-wa-btn" 
+        title="WhatsApp Dhruv (96545 71900)"
+        aria-label="WhatsApp Dhruv (96545 71900)">
+        <span class="nav-btn-icon">💬</span>
+      </a>
+
+      <!-- Small Icon-Only Call Button -->
+      <a 
+        href="tel:+919654571900" 
+        class="nav-icon-btn nav-call-btn" 
+        title="Call Dhruv (+91 96545 71900)"
+        aria-label="Call Dhruv (+91 96545 71900)">
+        <span class="nav-btn-icon">📞</span>
+      </a>
+
       <!-- Live Sitar Music Toggle Button (High-Priority Touch Target) -->
       <button 
         type="button" 
@@ -137,7 +157,7 @@
                 <span class="card-subtitle">
                   @switch (item.id) {
                     @case ('hero') { Welcome & Live Muhurat Countdown }
-                    @case ('invitation-unfold') { 3D Sealed Royal Envelope & Sacred Pheras }
+                    @case ('invitation-unfold') { 3D Sealed Envelope & Sacred Pheras }
                     @case ('couple') { Meet Dhruv & Vaishnavi }
                     @case ('events') { Sangeet/Mehandi, Haldi & Shubh Vivah Schedule }
                     @case ('rsvp') { Instant WhatsApp Confirmation }
@@ -158,9 +178,18 @@
             [class.active]="audioService.isPlaying()">
             <span>🪕 {{ audioService.isPlaying() ? 'Wedding Music Playing' : 'Play Soulful Music' }}</span>
           </button>
-          <a href="tel:+919654571900" class="drawer-action-btn call-dhruv-btn">
-            <span>📞 Call Dhruv (+91 96545 71900)</span>
-          </a>
+          <div class="drawer-contact-row">
+            <a 
+              href="https://wa.me/919654571900?text=Warm%20wishes%20and%20heartiest%20congratulations%20Dhruv%20%26%20Vaishnavi!" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="drawer-action-btn drawer-wa-btn">
+              <span>💬 WhatsApp Dhruv</span>
+            </a>
+            <a href="tel:+919654571900" class="drawer-action-btn drawer-call-btn">
+              <span>📞 Call Dhruv</span>
+            </a>
+          </div>
         </div>
 
       </div>

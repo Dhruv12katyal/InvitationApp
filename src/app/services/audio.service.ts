@@ -5,83 +5,90 @@ import { Injectable, signal } from '@angular/core';
 })
 export class AudioService {
   readonly isPlaying = signal(false);
-  readonly currentVolume = signal(0.65);
-  readonly isMutedByFocusZone = signal(false);
+  readonly currentVolume = signal(0.7);
 
   private audio: HTMLAudioElement | null = null;
-  private fadeInterval: any = null;
+  private fadeAnimationId: number | null = null;
   private autoDimTimer: any = null;
   private userExplicitlyToggled = false;
-  private activeSection = 'hero';
   private wasPlayingBeforeTabHidden = false;
 
-  // Configuration
-  private readonly DEFAULT_TARGET_VOLUME = 0.65;
-  private readonly RSVP_WHISPER_VOLUME = 0.15;
-  private readonly AUTO_DIM_DURATION_MS = 90000; // 90 seconds of music before gentle auto-fade
+  private readonly TARGET_VOLUME = 0.7;
+  private readonly AUTO_DIM_DURATION_MS = 90000; // 90 seconds before gentle auto-dim
 
   constructor() {
     if (typeof window !== 'undefined') {
       try {
         this.audio = new Audio('assets/audio/sahilmadan-wedding-invitation-421393.mp3');
         this.audio.loop = true;
-        this.audio.volume = 0; // Starts at 0 for graceful fade-ins
         this.audio.preload = 'auto';
+        this.audio.volume = 0; // Starts at 0 for smooth fade-in
 
         this.audio.addEventListener('play', () => this.isPlaying.set(true));
         this.audio.addEventListener('pause', () => this.isPlaying.set(false));
         this.audio.addEventListener('ended', () => this.isPlaying.set(false));
 
-        // 1. Tab Visibility Change (Auto-pause when leaving tab, resume when returning)
         this.setupTabVisibilityListener();
-
-        // 2. Scroll Section Intelligence (Auto-dim in RSVP section)
-        this.setupScrollZoneListener();
       } catch (e) {
-        console.warn('AudioService initialization warning:', e);
+        console.warn('AudioService initialization notice:', e);
       }
     }
   }
 
   /**
-   * Gracefully starts music with a smooth 1.8s volume fade-in
-   * @param isEnvelopeTrigger Set to true when called during envelope opening ceremony
+   * Starts music playback with a smooth 1.5s volume fade-in
    */
   play(isEnvelopeTrigger = false): void {
     if (!this.audio) return;
 
-    if (this.fadeInterval) {
-      clearInterval(this.fadeInterval);
-      this.fadeInterval = null;
+    this.cancelFade();
+
+    // Ensure initial volume starts at 0 for fade-in (unless browser locks element volume)
+    try {
+      this.audio.volume = 0;
+    } catch (_) {}
+
+    const playPromise = this.audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          this.isPlaying.set(true);
+          // Smooth volume ramp up to TARGET_VOLUME over 1500ms
+          this.fadeVolume(0, this.TARGET_VOLUME, 1500);
+
+          if (isEnvelopeTrigger && !this.userExplicitlyToggled) {
+            this.resetAutoDimTimer();
+          }
+        })
+        .catch((err) => {
+          console.log('Audio autoplay prevented, awaiting user interaction:', err);
+        });
     }
-
-    const targetVol = this.activeSection === 'rsvp' ? this.RSVP_WHISPER_VOLUME : this.DEFAULT_TARGET_VOLUME;
-
-    // Start playback
-    this.audio.play().then(() => {
-      this.isPlaying.set(true);
-      this.fadeVolume(0, targetVol, 1800);
-
-      // If triggered by envelope opening, start the 90-second gentle auto-dim timer
-      if (isEnvelopeTrigger && !this.userExplicitlyToggled) {
-        this.resetAutoDimTimer();
-      }
-    }).catch(err => {
-      console.log('Audio playback notice (waiting for user gesture):', err);
-    });
   }
 
   /**
-   * Gracefully stops music with a smooth 1.5s volume fade-out
+   * Smoothly fades out volume over 1200ms and pauses
    */
-  pause(fadeDuration = 1500): void {
+  pause(fadeDurationMs = 1200): void {
     if (!this.audio || !this.isPlaying()) return;
 
     this.clearAutoDimTimer();
-    this.fadeVolume(this.audio.volume, 0, fadeDuration, () => {
+    this.cancelFade();
+
+    const startVol = this.audio.volume;
+    if (startVol <= 0.05) {
+      this.audio.pause();
+      this.isPlaying.set(false);
+      return;
+    }
+
+    this.fadeVolume(startVol, 0, fadeDurationMs, () => {
       if (this.audio) {
         this.audio.pause();
         this.isPlaying.set(false);
+        try {
+          this.audio.volume = 0;
+        } catch (_) {}
       }
     });
   }
@@ -94,98 +101,98 @@ export class AudioService {
     this.clearAutoDimTimer();
 
     if (this.isPlaying()) {
-      this.pause(1200);
+      this.pause(1000);
     } else {
       this.play(false);
     }
   }
 
   /**
-   * Called when guest enters or folds an envelope
+   * Triggered when guest opens the entry envelope wax seal
    */
   onEnvelopeOpened(): void {
     if (!this.isPlaying()) {
       this.play(true);
     } else {
-      // Swell volume to full if it was ducked
-      this.fadeVolume(this.audio?.volume || 0, this.DEFAULT_TARGET_VOLUME, 1200);
+      this.fadeVolume(this.audio?.volume || 0, this.TARGET_VOLUME, 1000);
     }
   }
 
   onEnvelopeClosed(): void {
     if (this.isPlaying() && !this.userExplicitlyToggled) {
-      this.pause(1800);
+      this.pause(1500);
     }
   }
 
   /**
-   * Section-Aware Audio Zone handler
-   */
-  updateActiveSection(sectionId: string): void {
-    this.activeSection = sectionId;
-    if (!this.audio || !this.isPlaying()) return;
-
-    if (sectionId === 'rsvp') {
-      // Whisper focus mode for RSVP form
-      this.isMutedByFocusZone.set(true);
-      this.fadeVolume(this.audio.volume, this.RSVP_WHISPER_VOLUME, 1600);
-    } else {
-      // Emotional zone: Restore full royal volume
-      if (this.isMutedByFocusZone()) {
-        this.isMutedByFocusZone.set(false);
-        this.fadeVolume(this.audio.volume, this.DEFAULT_TARGET_VOLUME, 1600);
-      }
-    }
-  }
-
-  /**
-   * Smooth volume ramping engine (exponential & linear blend)
+   * Ultra-smooth volume ramp using requestAnimationFrame with easing
    */
   private fadeVolume(fromVol: number, toVol: number, durationMs: number, onComplete?: () => void): void {
-    if (!this.audio) return;
-
-    if (this.fadeInterval) {
-      clearInterval(this.fadeInterval);
-      this.fadeInterval = null;
+    if (!this.audio) {
+      if (onComplete) onComplete();
+      return;
     }
 
-    const steps = 30;
-    const stepDuration = durationMs / steps;
-    const volumeStep = (toVol - fromVol) / steps;
-    let currentStep = 0;
+    this.cancelFade();
 
-    this.audio.volume = Math.max(0, Math.min(1, fromVol));
+    const startTime = performance.now();
+    const clampedFrom = Math.max(0, Math.min(1, fromVol));
+    const clampedTo = Math.max(0, Math.min(1, toVol));
 
-    this.fadeInterval = setInterval(() => {
+    const step = (currentTime: number) => {
       if (!this.audio) {
-        clearInterval(this.fadeInterval);
+        if (onComplete) onComplete();
         return;
       }
 
-      currentStep++;
-      const nextVol = Math.max(0, Math.min(1, fromVol + (volumeStep * currentStep)));
-      this.audio.volume = nextVol;
-      this.currentVolume.set(nextVol);
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(1, elapsed / durationMs);
 
-      if (currentStep >= steps) {
-        clearInterval(this.fadeInterval);
-        this.fadeInterval = null;
-        this.audio.volume = Math.max(0, Math.min(1, toVol));
-        this.currentVolume.set(toVol);
+      // Smooth ease-in-out quadratic curve
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      const currentVol = clampedFrom + (clampedTo - clampedFrom) * ease;
+      const safeVol = Math.max(0, Math.min(1, currentVol));
+
+      try {
+        this.audio.volume = safeVol;
+        this.currentVolume.set(safeVol);
+      } catch (_) {
+        // If device locks element volume (like some iOS versions), still report target
+        this.currentVolume.set(safeVol);
+      }
+
+      if (progress < 1) {
+        this.fadeAnimationId = requestAnimationFrame(step);
+      } else {
+        this.fadeAnimationId = null;
+        try {
+          this.audio.volume = clampedTo;
+          this.currentVolume.set(clampedTo);
+        } catch (_) {}
         if (onComplete) onComplete();
       }
-    }, stepDuration);
+    };
+
+    this.fadeAnimationId = requestAnimationFrame(step);
   }
 
-  /**
-   * Tab Visibility handler
-   */
+  private cancelFade(): void {
+    if (this.fadeAnimationId !== null) {
+      cancelAnimationFrame(this.fadeAnimationId);
+      this.fadeAnimationId = null;
+    }
+  }
+
   private setupTabVisibilityListener(): void {
+    if (typeof document === 'undefined') return;
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         if (this.isPlaying()) {
           this.wasPlayingBeforeTabHidden = true;
-          this.pause(800);
+          this.pause(500);
         }
       } else {
         if (this.wasPlayingBeforeTabHidden) {
@@ -196,48 +203,11 @@ export class AudioService {
     });
   }
 
-  /**
-   * Scroll Section Zone Tracker
-   */
-  private setupScrollZoneListener(): void {
-    if (typeof window === 'undefined') return;
-
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          this.checkCurrentScrollSection();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  private checkCurrentScrollSection(): void {
-    const sections = ['hero', 'invitation-unfold', 'couple', 'events', 'rsvp'];
-    const scrollPos = window.scrollY + (window.innerHeight * 0.4);
-
-    for (const id of sections) {
-      const el = document.getElementById(id);
-      if (el) {
-        const top = el.offsetTop;
-        const height = el.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          if (this.activeSection !== id) {
-            this.updateActiveSection(id);
-          }
-          break;
-        }
-      }
-    }
-  }
-
   private resetAutoDimTimer(): void {
     this.clearAutoDimTimer();
     this.autoDimTimer = setTimeout(() => {
       if (this.isPlaying() && !this.userExplicitlyToggled) {
-        this.pause(3000); // 3-second ultra-gentle fade-out
+        this.pause(2500); // 2.5s gentle fade-out after 90s
       }
     }, this.AUTO_DIM_DURATION_MS);
   }

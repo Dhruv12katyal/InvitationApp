@@ -20,7 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
     InvitationCardComponent,
     CoupleComponent,
     EventsComponent,
-    RsvpComponent,
+    // RsvpComponent,
     FooterComponent
   ],
   templateUrl: './app.html',

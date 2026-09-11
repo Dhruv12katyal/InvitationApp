@@ -609,6 +609,78 @@
 }
 
 /* Media Queries */
+
+/* ==========================================
+   ULTRA-RESPONSIVE MOBILE & DESKTOP RULES
+   ========================================== */
+
+/* Small Icon-Only Navbar Buttons (Theme-Matched) */
+.nav-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.nav-wa-btn {
+  background: linear-gradient(135deg, var(--burgundy-primary) 0%, var(--burgundy-deep) 100%);
+  border: 1.5px solid var(--gold-primary);
+  box-shadow: 0 3px 10px rgba(102, 0, 51, 0.25);
+  color: #FFFDF9;
+}
+
+.nav-wa-btn:hover, .nav-wa-btn:active {
+  background: linear-gradient(135deg, var(--burgundy-accent) 0%, var(--burgundy-primary) 100%);
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 5px 14px rgba(212, 175, 55, 0.4);
+  border-color: #FFF3C4;
+}
+
+.nav-call-btn {
+  background: linear-gradient(135deg, #FFF3C4 0%, #E8C15A 30%, #C59B27 60%, #8F630A 100%);
+  border: 1.5px solid rgba(255, 253, 249, 0.6);
+  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+  color: #3B001D;
+}
+
+.nav-call-btn:hover, .nav-call-btn:active {
+  transform: translateY(-2px) scale(1.06);
+  box-shadow: 0 5px 16px rgba(212, 175, 55, 0.55);
+  filter: brightness(1.1);
+}
+
+.nav-btn-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+/* Drawer Contact Row */
+.drawer-contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.drawer-wa-btn {
+  background: linear-gradient(135deg, var(--burgundy-primary) 0%, var(--burgundy-deep) 100%);
+  border: 1.5px solid var(--gold-primary);
+  color: #FFFDF9;
+}
+
+.drawer-call-btn {
+  background: linear-gradient(135deg, #FFF3C4 0%, #E8C15A 30%, #C59B27 60%, #8F630A 100%);
+  border: 1.5px solid rgba(255, 253, 249, 0.6);
+  color: #3B001D;
+}
+
 @media (min-width: 960px) {
   .nav-links-track { display: flex; }
   .mobile-menu-trigger { display: none; }
@@ -616,9 +688,114 @@
   .mobile-drawer-backdrop { display: none !important; }
 }
 
-@media (max-width: 600px) {
-  .logo-tagline { display: none; }
-  .logo-couple-names { font-size: 1.05rem; }
-  .music-pill-btn .btn-text { display: none; }
-  .action-pill-btn { padding: 0 12px; }
+@media (max-width: 959px) {
+  .navbar-wrapper {
+    padding: 6px 10px;
+  }
+
+  .nav-floating-island {
+    height: 54px;
+    padding: 0 10px;
+    gap: 6px;
+  }
+
+  .royal-brand-logo {
+    gap: 7px;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+
+  .logo-crest-badge {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logo-couple-names {
+    font-size: clamp(0.85rem, 3.8vw, 1.12rem);
+    white-space: nowrap;
+  }
+
+  .logo-tagline {
+    display: none;
+  }
+
+  .nav-actions-group {
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .nav-icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-btn-icon {
+    font-size: 0.88rem;
+  }
+
+  .music-pill-btn {
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+  }
+
+  .music-pill-btn .btn-text,
+  .music-pill-btn .equalizer-bars {
+    display: none;
+  }
+
+  .music-pill-btn .btn-icon {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .mobile-menu-trigger {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+
+  .menu-bar {
+    width: 16px;
+    height: 2px;
+  }
+
+  .mobile-menu-trigger.open .bar-top { transform: translateY(5px) rotate(45deg); }
+  .mobile-menu-trigger.open .bar-bot { transform: translateY(-5px) rotate(-45deg); }
+}
+
+@media (max-width: 360px) {
+  .nav-floating-island {
+    padding: 0 6px;
+    gap: 4px;
+  }
+
+  .logo-crest-badge {
+    width: 30px;
+    height: 30px;
+  }
+
+  .logo-couple-names {
+    font-size: 0.82rem;
+  }
+
+  .nav-actions-group {
+    gap: 3px;
+  }
+
+  .nav-icon-btn,
+  .music-pill-btn,
+  .mobile-menu-trigger {
+    width: 30px;
+    height: 30px;
+    min-height: 30px;
+  }
+
+  .nav-btn-icon,
+  .music-pill-btn .btn-icon {
+    font-size: 0.82rem;
+  }
 }

@@ -1,14 +1,15 @@
+
 .wedding-footer {
-  background: #4A0025;
+  background: #3B001D;
   color: #FFFDF9;
-  padding: 55px 16px 36px;
+  padding: 50px 16px 36px;
   text-align: center;
   position: relative;
   border-top: 3px solid var(--gold-primary);
 }
 
 .footer-content {
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
@@ -38,39 +39,55 @@
   width: 70px;
   height: 1px;
   background: var(--gold-primary);
-  margin: 22px auto;
+  margin: 20px auto;
   opacity: 0.6;
 }
 
+/* Royal Golden Border Frame for Both Families */
 .family-names-grid {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 24px;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 16px;
+  margin: 0 auto 24px;
+  max-width: 650px;
+  padding: 18px 20px;
+  background: radial-gradient(circle at 50% 50%, rgba(102, 0, 51, 0.4) 0%, rgba(59, 0, 29, 0.6) 100%);
+  border: 1.5px solid var(--gold-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 0 16px rgba(212, 175, 55, 0.12);
+  position: relative;
+}
+
+.family-side {
+  flex: 1;
+  text-align: center;
 }
 
 .family-side h4 {
   color: #FFFDF9;
-  font-size: 1.15rem;
-  margin-bottom: 2px;
+  font-family: var(--font-serif);
+  font-size: clamp(0.98rem, 2.8vw, 1.15rem);
+  margin-bottom: 3px;
+  line-height: 1.3;
 }
 
 .family-side p {
   font-size: 0.82rem;
-  color: rgba(255, 253, 249, 0.75);
+  color: var(--gold-light);
+  opacity: 0.92;
 }
 
 .center-ampersand {
   font-family: var(--font-script);
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   color: var(--gold-light);
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  padding: 0 6px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .closing-blessing {
@@ -83,36 +100,82 @@
 }
 
 .copy-note {
-  font-size: 0.78rem;
-  color: rgba(255, 253, 249, 0.5);
+  font-size: 0.80rem;
+  color: rgba(255, 253, 249, 0.55);
   border-top: 1px solid rgba(255, 253, 249, 0.1);
   padding-top: 18px;
 }
-.groom-side-hosts {
-  margin-bottom: 22px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(212, 175, 55, 0.25);
-  border-radius: var(--radius-md);
-  padding: 14px 20px;
-  display: inline-block;
+
+@media (max-width: 580px) {
+  .family-names-grid {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 14px;
+  }
+  .center-ampersand {
+    font-size: 1.8rem;
+    margin: -4px 0;
+  }
 }
 
-.hosts-label {
+
+
+
+/* Sleek Minimal Contact Strip */
+.footer-contact-minimal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px auto 18px;
+}
+
+.contact-label {
   font-size: 0.82rem;
   color: var(--gold-light);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 4px;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
 }
 
-.hosts-names {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
+.contact-links-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(212, 175, 55, 0.45);
   color: #FFFDF9;
-  margin-bottom: 2px;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+  touch-action: manipulation;
 }
 
-.hosts-family {
-  font-size: 0.85rem;
-  color: rgba(255, 253, 249, 0.75);
+.contact-pill-link:hover, .contact-pill-link:active {
+  background: rgba(212, 175, 55, 0.22);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+.pill-dot {
+  color: var(--gold-primary);
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+
+/* Ensure Mobile Bottom Dock never obscures footer */
+@media (max-width: 960px) {
+  .wedding-footer {
+    padding-bottom: 84px;
+  }
 }

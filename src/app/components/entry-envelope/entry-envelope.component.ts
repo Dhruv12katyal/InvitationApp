@@ -187,8 +187,8 @@ export class EntryEnvelopeComponent implements AfterViewInit, OnDestroy {
     // Phase 6: Celebratory golden & rose confetti wave as card reaches full glory
     tl.call(() => this.fireConfettiWave3(), undefined, 2.3);
 
-    // Phase 7: Ample reading hold duration (~5s) for relaxed viewing
-    tl.to({}, { duration: 5.0 });
+    // Phase 7: Reading hold duration (2s) before auto-transitioning
+    tl.to({}, { duration: 2.0 });
   }
 
   private fireConfettiWave1(): void {
@@ -234,7 +234,7 @@ export class EntryEnvelopeComponent implements AfterViewInit, OnDestroy {
       gsap.to(overlayEl, {
         autoAlpha: 0,
         scale: 1.05,
-        duration: 1.1,
+        duration: 2.0,
         ease: 'power2.inOut',
         onComplete: () => {
           const heroEl = document.getElementById('hero');
