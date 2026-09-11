@@ -799,3 +799,18 @@
     font-size: 0.82rem;
   }
 }
+
+
+.wa-nav-svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+  fill: currentColor;
+}
+
+@media (max-width: 959px) {
+  .wa-nav-svg {
+    width: 16px;
+    height: 16px;
+  }
+}
