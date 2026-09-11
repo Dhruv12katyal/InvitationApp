@@ -11,7 +11,7 @@ export class AudioService {
   private fadeAnimationId: number | null = null;
   private autoDimTimer: any = null;
   private userExplicitlyToggled = false;
-  private wasPlayingBeforeTabHidden = false;
+  private wasPlayingBeforeLeaving = false;
 
   private readonly TARGET_VOLUME = 0.7;
   private readonly AUTO_DIM_DURATION_MS = 90000; // 90 seconds before gentle auto-dim
@@ -28,7 +28,8 @@ export class AudioService {
         this.audio.addEventListener('pause', () => this.isPlaying.set(false));
         this.audio.addEventListener('ended', () => this.isPlaying.set(false));
 
-        this.setupTabVisibilityListener();
+        // Comprehensive lifecycle listeners for lock screen, tab switch, app switch, backgrounding
+        this.setupAppLifecycleListeners();
       } catch (e) {
         console.warn('AudioService initialization notice:', e);
       }
@@ -43,7 +44,6 @@ export class AudioService {
 
     this.cancelFade();
 
-    // Ensure initial volume starts at 0 for fade-in (unless browser locks element volume)
     try {
       this.audio.volume = 0;
     } catch (_) {}
@@ -53,7 +53,6 @@ export class AudioService {
       playPromise
         .then(() => {
           this.isPlaying.set(true);
-          // Smooth volume ramp up to TARGET_VOLUME over 1500ms
           this.fadeVolume(0, this.TARGET_VOLUME, 1500);
 
           if (isEnvelopeTrigger && !this.userExplicitlyToggled) {
@@ -61,36 +60,43 @@ export class AudioService {
           }
         })
         .catch((err) => {
-          console.log('Audio autoplay prevented, awaiting user interaction:', err);
+          console.log('Audio playback waiting for user gesture:', err);
         });
     }
   }
 
   /**
-   * Smoothly fades out volume over 1200ms and pauses
+   * Smoothly fades out volume and pauses
    */
-  pause(fadeDurationMs = 1200): void {
+  pause(fadeDurationMs = 1000): void {
     if (!this.audio || !this.isPlaying()) return;
 
     this.clearAutoDimTimer();
     this.cancelFade();
 
     const startVol = this.audio.volume;
-    if (startVol <= 0.05) {
-      this.audio.pause();
-      this.isPlaying.set(false);
+    if (startVol <= 0.05 || fadeDurationMs <= 0) {
+      this.instantStop();
       return;
     }
 
     this.fadeVolume(startVol, 0, fadeDurationMs, () => {
-      if (this.audio) {
-        this.audio.pause();
-        this.isPlaying.set(false);
-        try {
-          this.audio.volume = 0;
-        } catch (_) {}
-      }
+      this.instantStop();
     });
+  }
+
+  /**
+   * Immediately stops audio with zero delay (used on lock screen, tab switch, app backgrounding)
+   */
+  instantStop(): void {
+    if (!this.audio) return;
+    this.cancelFade();
+    this.clearAutoDimTimer();
+    try {
+      this.audio.pause();
+      this.audio.volume = 0;
+    } catch (_) {}
+    this.isPlaying.set(false);
   }
 
   /**
@@ -101,7 +107,7 @@ export class AudioService {
     this.clearAutoDimTimer();
 
     if (this.isPlaying()) {
-      this.pause(1000);
+      this.pause(800);
     } else {
       this.play(false);
     }
@@ -125,7 +131,7 @@ export class AudioService {
   }
 
   /**
-   * Ultra-smooth volume ramp using requestAnimationFrame with easing
+   * Ultra-smooth volume ramp using requestAnimationFrame with quadratic easing
    */
   private fadeVolume(fromVol: number, toVol: number, durationMs: number, onComplete?: () => void): void {
     if (!this.audio) {
@@ -148,7 +154,6 @@ export class AudioService {
       const elapsed = currentTime - startTime;
       const progress = Math.min(1, elapsed / durationMs);
 
-      // Smooth ease-in-out quadratic curve
       const ease = progress < 0.5
         ? 2 * progress * progress
         : 1 - Math.pow(-2 * progress + 2, 2) / 2;
@@ -160,7 +165,6 @@ export class AudioService {
         this.audio.volume = safeVol;
         this.currentVolume.set(safeVol);
       } catch (_) {
-        // If device locks element volume (like some iOS versions), still report target
         this.currentVolume.set(safeVol);
       }
 
@@ -186,20 +190,61 @@ export class AudioService {
     }
   }
 
-  private setupTabVisibilityListener(): void {
-    if (typeof document === 'undefined') return;
+  /**
+   * Multi-Event Lifecycle Engine:
+   * Instantly turns off audio when screen locks, browser minimizes, tab changes, or window blurs.
+   * Resumes seamlessly when returning to the app if it was playing.
+   */
+  private setupAppLifecycleListeners(): void {
+    if (typeof document === 'undefined' || typeof window === 'undefined') return;
+
+    const onAppLeave = () => {
+      if (this.isPlaying()) {
+        this.wasPlayingBeforeLeaving = true;
+        this.instantStop(); // Immediate mute & pause, no background playing
+      }
+    };
+
+    const onAppReturn = () => {
+      if (this.wasPlayingBeforeLeaving && !document.hidden) {
+        this.wasPlayingBeforeLeaving = false;
+        this.play(false);
+      }
+    };
+
+    // 1. Tab Switch / Screen Lock / Minimize (Standard)
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        if (this.isPlaying()) {
-          this.wasPlayingBeforeTabHidden = true;
-          this.pause(500);
-        }
+        onAppLeave();
       } else {
-        if (this.wasPlayingBeforeTabHidden) {
-          this.wasPlayingBeforeTabHidden = false;
-          this.play(false);
-        }
+        onAppReturn();
       }
+    });
+
+    // 2. Mobile Page Background / Navigation Away
+    window.addEventListener('pagehide', () => {
+      onAppLeave();
+    });
+
+    // 3. Browser Window Blur (Control center pulled, screen lock, app switcher)
+    window.addEventListener('blur', () => {
+      onAppLeave();
+    });
+
+    // 4. Browser Window Focus
+    window.addEventListener('focus', () => {
+      if (!document.hidden) {
+        onAppReturn();
+      }
+    });
+
+    // 5. Freeze / Unload Safeguards
+    document.addEventListener('freeze', () => {
+      onAppLeave();
+    });
+
+    window.addEventListener('beforeunload', () => {
+      this.instantStop();
     });
   }
 
@@ -207,7 +252,7 @@ export class AudioService {
     this.clearAutoDimTimer();
     this.autoDimTimer = setTimeout(() => {
       if (this.isPlaying() && !this.userExplicitlyToggled) {
-        this.pause(2500); // 2.5s gentle fade-out after 90s
+        this.pause(2500);
       }
     }, this.AUTO_DIM_DURATION_MS);
   }
