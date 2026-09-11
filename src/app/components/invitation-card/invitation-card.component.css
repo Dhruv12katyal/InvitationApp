@@ -592,3 +592,12 @@
   .pheras-jharokha-frame { max-width: 280px; }
   .pheras-shloka-text { font-size: 0.78rem; }
 }
+
+.hosts-and-sep {
+  font-family: var(--font-script);
+  font-size: 1.8rem;
+  color: var(--gold-dark);
+  line-height: 1;
+  display: inline-block;
+  margin: 2px 0;
+}

@@ -88,3 +88,31 @@
   border-top: 1px solid rgba(255, 253, 249, 0.1);
   padding-top: 18px;
 }
+.groom-side-hosts {
+  margin-bottom: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  display: inline-block;
+}
+
+.hosts-label {
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 4px;
+}
+
+.hosts-names {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #FFFDF9;
+  margin-bottom: 2px;
+}
+
+.hosts-family {
+  font-size: 0.85rem;
+  color: rgba(255, 253, 249, 0.75);
+}
