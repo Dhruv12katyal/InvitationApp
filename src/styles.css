@@ -38,12 +38,19 @@
   --turquoise-medium: #8A0D4B;
   --turquoise-soft: #F9EBF1;
 
-  /* 24K Champagne Gold Accents */
-  --gold-primary: #D4AF37;
-  --gold-dark: #B38E22;
-  --gold-light: #F9F1D8;
-  --gold-border: rgba(212, 175, 55, 0.42);
-  --gold-glow: rgba(212, 175, 55, 0.30);
+  /* 24K Royal Champagne & Burnished Gold Palette */
+  --gold-primary: #C59B27;
+  --gold-dark: #996F19;
+  --gold-deep: #7A550D;
+  --gold-bright: #E5C358;
+  --gold-light: #FFF8E6;
+  --gold-shimmer: #F6E2A3;
+  --gold-border: rgba(197, 155, 39, 0.45);
+  --gold-border-subtle: rgba(197, 155, 39, 0.22);
+  --gold-glow: rgba(197, 155, 39, 0.32);
+  --gold-gradient: linear-gradient(135deg, #F9E7B5 0%, #D4AF37 38%, #C59B27 70%, #996F19 100%);
+  --gold-foil: linear-gradient(135deg, #FFF1CA 0%, #E8C868 30%, #C59B27 65%, #946914 100%);
+  --gold-surface: linear-gradient(135deg, #FFFDF8 0%, #FDF4DE 100%);
   
   --mehendi-green: #295B30;
   --mehendi-bg: #EAF4EC;
@@ -54,10 +61,14 @@
   --text-muted: #5E4A53;
   --text-light: #8A757F;
 
+  /* Aesthetic Typography System */
   --font-serif: "Cormorant Garamond", Georgia, serif;
-  --font-heading: "Cinzel Decorative", serif;
+  --font-title: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-heading: "Cinzel", "Cinzel Decorative", Georgia, serif;
+  --font-heading-clean: "Cinzel", Georgia, serif;
   --font-devanagari: "Rozha One", serif;
-  --font-script: "Great Vibes", cursive;
+  --font-script: "Alex Brush", "Pinyon Script", "Great Vibes", cursive;
+  --font-calligraphy: "Alex Brush", cursive;
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --font-scale: 1;
@@ -104,17 +115,30 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Headings */
+/* Headings - Slender, graceful and aesthetic */
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  font-weight: 700;
+  font-family: var(--font-title);
+  font-weight: 400;
   color: var(--burgundy-primary);
   line-height: 1.25;
+  letter-spacing: 0.5px;
 }
 
 .font-heading { font-family: var(--font-heading); }
 .font-script { font-family: var(--font-script); }
 .font-devanagari { font-family: var(--font-devanagari); }
+.font-title { font-family: var(--font-title); }
+.font-calligraphy { font-family: var(--font-calligraphy); }
+
+.section-title {
+  font-family: var(--font-calligraphy);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6.5vw, 3.8rem);
+  color: var(--burgundy-primary);
+  line-height: 1.2;
+  margin: 8px 0 6px;
+  letter-spacing: 0.5px;
+}
 
 /* Prevent iOS Auto-Zoom on form input focus by ensuring >= 16px font */
 input, select, textarea {
@@ -135,25 +159,28 @@ input, select, textarea {
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #B38E22 0%, #E5C358 35%, #D4AF37 60%, #947115 100%);
+  background: linear-gradient(135deg, #8A6112 0%, #DDB84F 35%, #C59B27 65%, #7A530C 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  filter: drop-shadow(0 1px 1px rgba(138, 97, 18, 0.18));
 }
 
-.gold-badge {
+.gold-badge, .sacred-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
-  background: var(--burgundy-blush);
-  border: 1px solid var(--gold-border);
-  color: var(--burgundy-primary);
-  border-radius: var(--radius-pill);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 10px;
+  background: transparent;
+  border: none;
+  color: var(--gold-primary);
+  font-family: var(--font-heading-clean);
+  font-size: 0.80rem;
+  font-weight: 500;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
+  box-shadow: none;
 }
 
 /* Buttons with Mobile Touch Targets */
@@ -165,9 +192,11 @@ input, select, textarea {
   min-height: 46px;
   padding: 10px 22px;
   border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-family: var(--font-heading-clean);
+  font-size: 0.86rem;
   font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -178,26 +207,35 @@ input, select, textarea {
 
 .btn-primary {
   background: linear-gradient(135deg, var(--burgundy-primary) 0%, var(--burgundy-deep) 100%);
-  color: #FAF9F8;
-  box-shadow: 0 4px 15px rgba(102, 0, 51, 0.30);
-  border: 1px solid rgba(212, 175, 55, 0.4);
+  color: #FFFDF9;
+  box-shadow: 0 4px 16px rgba(102, 0, 51, 0.32);
+  border: 1px solid var(--gold-border);
 }
 
 .btn-primary:hover, .btn-primary:active {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 0, 51, 0.40);
+  box-shadow: 0 6px 22px rgba(102, 0, 51, 0.45);
   background: linear-gradient(135deg, var(--burgundy-accent) 0%, var(--burgundy-primary) 100%);
+  border-color: var(--gold-primary);
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, #E6C564 0%, #D4AF37 50%, #B89224 100%);
-  color: #2D0516;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  background: var(--gold-foil);
+  color: #260012;
+  font-family: var(--font-heading-clean);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(153, 111, 25, 0.35);
+  box-shadow: 0 4px 16px rgba(197, 155, 39, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .btn-gold:hover, .btn-gold:active {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+  background: linear-gradient(135deg, #FFF6D8 0%, #F0D57E 30%, #D4AF37 65%, #A87A1E 100%);
+  box-shadow: 0 8px 24px rgba(197, 155, 39, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-color: rgba(153, 111, 25, 0.5);
 }
 
 .btn-whatsapp {
@@ -241,13 +279,13 @@ input, select, textarea {
 
 /* Sections */
 section {
-  padding: 60px 0;
+  padding: 36px 0;
   position: relative;
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
   section {
-    padding: 85px 0;
+    padding: 48px 0;
   }
 }

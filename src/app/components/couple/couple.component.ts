@@ -8,4 +8,4 @@ import { CommonModule } from '@angular/common';
   templateUrl: './couple.component.html',
   styleUrl: './couple.component.css'
 })
-export class CoupleComponent {}
+export class CoupleComponent { }

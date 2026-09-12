@@ -1,271 +1,511 @@
+/* ==========================================================================
+   Royal Celebrations & Itinerary - Modern Luxury Editorial Style
+   ========================================================================== */
+
 .events-section {
-  background: var(--bg-ivory-light);
-  padding: 70px 16px;
+  background: radial-gradient(circle at 50% 20%, #FAF8F6 0%, #F5EEEF 55%, #EBE4E7 100%);
+  padding: 34px 16px 28px;
+  position: relative;
 }
 
 .section-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 36px;
+  margin: 0 auto 20px;
 }
 
 .section-title {
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  margin: 12px 0 8px;
+  font-family: var(--font-calligraphy);
+  font-size: clamp(2.8rem, 7vw, 4.2rem);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 6px 0 6px;
+  line-height: 1.15;
+  color: var(--burgundy-primary);
 }
 
 .section-subtitle {
-  font-size: 0.98rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
   color: var(--text-muted);
 }
 
+/* 3-Column Luxury Cards Grid */
 .events-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px;
-  margin-bottom: 30px;
+  gap: 20px;
+  max-width: 1140px;
+  margin: 0 auto 12px;
+  align-items: stretch;
 }
 
 @media (min-width: 768px) {
   .events-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 22px;
   }
 }
 
+/* Luxury Event Card */
 .event-card {
-  background: #FFFFFF;
-  border-radius: var(--radius-lg);
-  border: 1.5px solid var(--gold-border);
-  box-shadow: var(--shadow-card);
-  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(197, 155, 39, 0.32);
+  box-shadow: 0 8px 24px rgba(102, 0, 51, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+  position: relative;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .event-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  border-color: rgba(197, 155, 39, 0.58);
+  box-shadow: 0 16px 36px rgba(102, 0, 51, 0.12), 0 0 18px rgba(197, 155, 39, 0.18);
 }
 
-.event-header-banner {
-  padding: 10px 18px;
+/* Delicate Top Accent Hairline */
+.card-accent-bar {
+  height: 3.5px;
+  width: 100%;
+}
+
+.mehendi-theme .card-accent-bar {
+  background: linear-gradient(90deg, transparent, #295B30 25%, #C59B27 75%, transparent);
+}
+
+.haldi-theme .card-accent-bar {
+  background: linear-gradient(90deg, transparent, #D98200 25%, #E5C358 75%, transparent);
+}
+
+.wedding-theme .card-accent-bar {
+  background: linear-gradient(90deg, transparent, #660033 25%, #C59B27 75%, transparent);
+}
+
+/* Card Top Bar */
+.card-top-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 13px 18px 6px;
 }
 
-.mehendi-theme .event-header-banner { background: #F0F7F1; }
-.haldi-theme .event-header-banner { background: #FFF9E6; }
-.wedding-theme .event-header-banner { background: #FCF0F2; }
-
-.function-badge {
-  font-size: 0.72rem;
+.ritual-pill {
+  font-family: var(--font-heading-clean);
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--text-muted);
+  letter-spacing: 1.2px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(197, 155, 39, 0.09);
+  color: var(--gold-dark);
+  border: 1px solid rgba(197, 155, 39, 0.28);
 }
 
-.royal-badge { color: var(--maroon-royal); }
-.dress-tag { font-size: 0.78rem; font-weight: 600; color: var(--maroon-royal); }
+.ritual-pill.highlight-pill {
+  background: rgba(102, 0, 51, 0.08);
+  color: var(--burgundy-primary);
+  border-color: rgba(102, 0, 51, 0.25);
+}
 
-.event-body {
-  padding: 24px 18px;
+.dress-code-tag {
+  font-family: var(--font-heading-clean);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #5D3E4E;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dress-sparkle {
+  color: var(--gold-primary);
+  font-size: 0.65rem;
+}
+
+/* Card Main Content */
+.card-main-content {
+  padding: 6px 18px 14px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   text-align: center;
 }
 
-.ceremony-icon-circle {
-  width: 52px;
-  height: 52px;
+.ceremony-emblem {
+  width: 44px;
+  height: 44px;
+  margin: 2px auto 8px;
   border-radius: 50%;
-  background: var(--mehendi-bg);
-  border: 1px solid rgba(41, 91, 48, 0.3);
+  background: linear-gradient(135deg, #FFFDF8 0%, #F8F2E7 100%);
+  border: 1.5px solid rgba(197, 155, 39, 0.38);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 14px;
+  box-shadow: 0 4px 12px rgba(197, 155, 39, 0.16);
+  transition: transform 0.3s ease;
 }
 
-.haldi-icon {
-  background: var(--haldi-bg);
-  border-color: rgba(217, 130, 0, 0.3);
+.event-card:hover .ceremony-emblem {
+  transform: scale(1.08);
 }
 
-.wedding-icon {
-  background: var(--maroon-soft);
-  border-color: rgba(102, 0, 51, 0.3);
+.ceremony-icon {
+  font-size: 1.3rem;
+  line-height: 1;
 }
-
-.ceremony-emoji { font-size: 1.4rem; }
 
 .event-name {
-  font-size: 1.5rem;
-  color: var(--maroon-royal);
-  margin-bottom: 4px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--burgundy-primary);
+  margin-bottom: 3px;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
 }
 
 .event-tagline {
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
   font-style: italic;
-  margin-bottom: 18px;
+  color: #7A5B69;
+  margin-bottom: 14px;
 }
 
-.event-meta-box {
-  background: var(--bg-ivory-warm);
-  border-radius: var(--radius-md);
-  padding: 16px 14px;
+/* Sleek Date & Time Showcase */
+.schedule-showcase {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FAF7F5;
+  border: 1px solid rgba(197, 155, 39, 0.22);
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
   text-align: left;
-  margin-bottom: 20px;
+}
+
+.date-chip {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.meta-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.meta-icon {
-  font-size: 1.15rem;
-  margin-top: 1px;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  width: 52px;
+  padding: 6px 2px;
+  background: linear-gradient(135deg, var(--burgundy-primary) 0%, var(--burgundy-deep) 100%);
+  color: #FFFDF9;
+  border-radius: 10px;
+  border: 1px solid var(--gold-border);
+  box-shadow: 0 3px 10px rgba(102, 0, 51, 0.22);
   flex-shrink: 0;
 }
 
-.meta-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.meta-label {
-  font-size: 0.7rem;
+.chip-month {
+  font-size: 0.62rem;
+  font-family: var(--font-heading-clean);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold-shimmer);
   text-transform: uppercase;
+}
+
+.chip-day {
+  font-size: 1.32rem;
+  font-family: var(--font-title);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 1px 0;
+  color: #FFFDF9;
+}
+
+.chip-year {
+  font-size: 0.58rem;
   letter-spacing: 0.5px;
-  color: var(--text-muted);
-  font-weight: 600;
+  opacity: 0.85;
 }
 
-.meta-val {
-  font-size: 0.95rem;
-  color: var(--text-dark);
-}
-
-.highlight-time {
-  color: var(--maroon-royal);
-  font-size: 1rem;
-}
-
-.venue-title { color: var(--maroon-royal); }
-.meta-sub { font-size: 0.8rem; color: var(--text-muted); }
-
-.event-actions {
-  margin-top: auto;
+.time-venue-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
 }
 
-.btn-map {
-  background: #FAF9F8;
-  border: 1.5px solid var(--burgundy-primary);
-  color: var(--burgundy-primary);
-  min-height: 44px;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  font-size: 0.9rem;
+.schedule-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.84rem;
+  color: var(--text-dark);
+  line-height: 1.35;
+}
+
+.info-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.venue-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
   font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
+  color: var(--burgundy-primary);
+  line-height: 1.2;
+}
+
+.venue-city {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+/* Venue Location Capsule */
+.venue-location-capsule {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(197, 155, 39, 0.28);
+  background: #FAF9F7;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.map-window {
+  position: relative;
+  height: 108px;
+  width: 100%;
+  overflow: hidden;
+  background: #EDEAE5;
+}
+
+.venue-map-iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  filter: contrast(1.02) saturate(1.05);
+}
+
+.map-glass-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--gold-border);
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--burgundy-primary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.map-pulse {
+  font-size: 0.75rem;
+  animation: mapPinPulse 2.2s infinite ease-in-out;
+}
+
+@keyframes mapPinPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+.btn-maps-nav {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(102, 0, 51, 0.08);
-  transition: all 0.25s ease;
-  touch-action: manipulation;
-}
-
-.btn-map:hover {
-  background: var(--burgundy-primary);
-  color: #FAF9F8;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(102, 0, 51, 0.25);
-}
-
-.btn-map:active {
-  transform: translateY(0);
-}
-
-.btn-map-gold {
-  background: #FAF9F8;
-  border: 1.5px solid var(--burgundy-primary);
-  color: var(--burgundy-primary);
-}
-
-.calendar-btn-group {
-  display: flex;
-  gap: 8px;
-}
-
-.btn-cal {
-  flex: 1;
+  gap: 6px;
+  padding: 8px 12px;
   background: #FFFFFF;
-  border: 1px solid var(--gold-border);
-  color: var(--text-muted);
-  min-height: 38px;
-  padding: 6px 10px;
-  border-radius: var(--radius-pill);
+  color: var(--burgundy-primary);
+  font-family: var(--font-heading-clean);
   font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  border-top: 1px solid rgba(197, 155, 39, 0.2);
+  transition: all 0.25s ease;
+}
+
+.btn-maps-nav:hover {
+  background: var(--burgundy-primary);
+  color: #FFFDF9;
+}
+
+.arrow-glyph {
+  font-size: 0.88rem;
+  transition: transform 0.2s ease;
+}
+
+.btn-maps-nav:hover .arrow-glyph {
+  transform: translate(2px, -2px);
+}
+
+/* Home Capsule (Symmetric to Map Capsule for Haldi) */
+.home-capsule {
+  height: 144px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #FFFDF8 0%, #FDF7EC 100%);
+  border: 1px dashed rgba(197, 155, 39, 0.45);
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.home-crest-icon {
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+}
+
+.home-title {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
   font-weight: 600;
+  color: var(--maroon-royal);
+  margin-bottom: 3px;
+}
+
+.home-desc {
+  font-size: 0.77rem;
+  color: #6E5742;
+  line-height: 1.35;
+  margin: 0 0 6px;
+}
+
+.home-status-tag {
+  background: rgba(197, 155, 39, 0.12);
+  border: 1px solid rgba(197, 155, 39, 0.25);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+
+/* Card Footer: Calendar Actions */
+.card-footer-actions {
+  padding: 10px 18px 13px;
+  border-top: 1px solid rgba(197, 155, 39, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cal-sync-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: var(--font-heading-clean);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.cal-action-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.cal-pill {
+  font-family: var(--font-heading-clean);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 5px 13px;
+  border-radius: 20px;
+  border: 1px solid rgba(197, 155, 39, 0.38);
+  background: #FFFFFF;
+  color: var(--burgundy-primary);
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  touch-action: manipulation;
+  gap: 4px;
 }
 
-.btn-cal:hover, .btn-cal:active {
-  background: var(--gold-light);
-  color: var(--maroon-royal);
+.cal-pill:hover {
+  background: var(--gold-surface);
+  border-color: var(--gold-primary);
+  color: #3B001D;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(197, 155, 39, 0.2);
 }
 
-.home-badge {
-  background: #FAF6ED;
-  border: 1px dashed var(--gold-dark);
-  padding: 10px 12px;
-  border-radius: var(--radius-pill);
+/* Sleek Guest Navigation Tip */
+.guest-itinerary-tip {
+  margin: 16px auto 0;
+  max-width: 680px;
+  text-align: center;
   font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--gold-dark);
-}
-
-.elder-navigation-note {
-  background: #FFFDF9;
-  border: 1px solid var(--gold-border);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
+  color: #6E535E;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(197, 155, 39, 0.25);
+  border-radius: 24px;
+  padding: 7px 18px;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  box-shadow: var(--shadow-subtle);
-  font-size: 0.88rem;
-  color: var(--text-dark);
-  line-height: 1.5;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(102, 0, 51, 0.04);
 }
 
-.note-icon {
-  font-size: 1.2rem;
+.tip-gem {
   color: var(--gold-dark);
-  flex-shrink: 0;
-  margin-top: 1px;
+  font-size: 0.85rem;
 }
 
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .events-section {
+    padding: 26px 12px 22px;
+  }
 
+  .event-name {
+    font-size: 1.45rem;
+  }
+
+  .schedule-showcase {
+    padding: 8px 10px;
+    gap: 10px;
+  }
+
+  .date-chip {
+    min-width: 48px;
+    width: 48px;
+    padding: 4px 2px;
+  }
+
+  .chip-day {
+    font-size: 1.2rem;
+  }
+
+  .guest-itinerary-tip {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
+}

@@ -14,33 +14,37 @@
 
     <!-- Top Headline (Fades out when card rolls out) -->
     <div #headerText class="ceremony-top-header">
-      <h2 class="header-script-title font-script">A Sacred Invitation Awaits...</h2>
-      <p class="header-sub-tag font-devanagari">॥ ॐ श्री गणेशाय नमः ॥</p>
+      <span class="ceremony-badge font-devanagari">॥ ॐ श्री गणेशाय नमः ॥</span>
+      <h2 class="header-script-title font-script">A Royal Invitation Awaits...</h2>
+      <p class="header-sub-tag font-serif">Katyal & Bhandari Family Wedding</p>
     </div>
 
     <!-- Central Interactive Sleeve & Bouquet Composition -->
     <div class="sleeve-card-composition">
 
-      <!-- TOP-RIGHT FLOWER BOUQUET (Transparent PNG, Hides on card open) -->
-      <div #topBouquet class="flower-bouquet bouquet-top-right">
-        <img src="assets/images/bouquet.png" alt="Wedding Floral Bouquet" class="bouquet-img">
-      </div>
-
-      <!-- BOTTOM-LEFT FLOWER BOUQUET (Transparent PNG, Hides on card open) -->
-      <div #bottomBouquet class="flower-bouquet bouquet-bottom-left">
-        <img src="assets/images/bouquet.png" alt="Wedding Floral Bouquet" class="bouquet-img">
-      </div>
+      <!-- Ambient Glow Behind Envelope -->
+      <div class="envelope-ambient-glow" aria-hidden="true"></div>
 
       <!-- ENVELOPE SLEEVE CONTAINER (Dims to minimal opacity on open) -->
       <div #envelopeBox class="card-sleeve-box">
 
-        <!-- 1. BACK SLEEVE LINING -->
+        <!-- 1. BACK SLEEVE LINING (Silk & Gold Watermark) -->
         <div class="sleeve-back-wall">
-          <div class="sleeve-inner-lining"></div>
+          <div class="sleeve-inner-lining">
+            <div class="inner-lining-pattern"></div>
+            <div class="inner-lining-gold-shlok font-devanagari">॥ शुभ विवाह ॥</div>
+          </div>
         </div>
 
         <!-- 2. FRONT SLEEVE POUCH (Dims when card emerges) -->
         <div #pocket class="sleeve-front-pouch">
+          <!-- Paper Texture & Gold Foil Embellishments -->
+          <div class="pouch-paper-grain"></div>
+          <div class="pouch-gold-trim"></div>
+          <div class="pouch-gold-filigree-bl" aria-hidden="true">❦</div>
+          <div class="pouch-gold-filigree-br" aria-hidden="true">❦</div>
+          
+          <!-- Realistic Seams & Creases -->
           <div class="pouch-crease-left"></div>
           <div class="pouch-crease-right"></div>
           <div class="pouch-crease-bottom"></div>
@@ -49,31 +53,59 @@
         <!-- 3. TOP FOLDING FLAP (Flips Open in 3D) -->
         <div #flap class="sleeve-top-flap">
           <div class="flap-surface">
-            <div class="flap-crease-lines"></div>
+            <div class="flap-paper-grain"></div>
+            <div class="flap-gold-piping"></div>
+            <div class="flap-gold-crease-trim"></div>
+            <div class="flap-crease-highlight"></div>
+            <div class="flap-gold-crest" aria-hidden="true">⚜</div>
           </div>
         </div>
 
-        <!-- 4. 3D BURGUNDY & GOLD WAX SEAL -->
+        <!-- 4. 3D REALISTIC MOLTEN WAX SEAL (D & V in single line) -->
         <button 
           #seal
           type="button" 
           class="sleeve-wax-seal" 
           (click)="openCard()" 
-          title="Tap to Break Wax Seal">
-          <div class="seal-inner-emboss">
-            <span class="seal-monogram font-script">D & V</span>
-            <span class="seal-hindi font-devanagari">शुभ विवाह</span>
+          title="Tap to Break Wax Seal & Open">
+          <!-- Organic Molten Wax Edge -->
+          <div class="seal-molten-spill">
+            <div class="seal-beaded-rim">
+              <div class="seal-stamp-cavity">
+                <div class="seal-specular-sheen"></div>
+                <!-- Monogram in a single line -->
+                <div class="seal-monogram-single-line font-script">
+                  <span class="m-d">D</span>
+                  <span class="m-amp font-serif">&</span>
+                  <span class="m-v">V</span>
+                </div>
+              </div>
+            </div>
           </div>
+          <!-- Warm Glowing Pulse Aura -->
           <div class="seal-pulse-glow"></div>
         </button>
 
+      </div>
+
+      <!-- CORNER FLOWER BOUQUETS (Strictly in front of envelope corners!) -->
+      <div #topBouquet class="flower-bouquet bouquet-top-right">
+        <img src="assets/images/bouquet.png" alt="Wedding Floral Bouquet" class="bouquet-img">
+      </div>
+      <div #bottomBouquet class="flower-bouquet bouquet-bottom-left">
+        <img src="assets/images/bouquet.png" alt="Wedding Floral Bouquet" class="bouquet-img">
       </div>
 
     </div>
 
     <!-- Bottom Action Prompt (Fades out on open) -->
     <div #bottomPrompt class="ceremony-bottom-prompt" (click)="openCard()">
-      <p class="click-to-open-label font-serif">CLICK TO OPEN...</p>
+      <div class="seal-prompt-pill">
+        <span class="prompt-star">✦</span>
+        <span class="click-to-open-label font-serif">Tap Wax Seal to Open</span>
+        <span class="prompt-star">✦</span>
+      </div>
+      <p class="prompt-sub-hint font-sans">Dhruv & Vaishnavi • 16 & 17 January 2026</p>
     </div>
 
     <!-- 5. GRAND ROYAL WEDDING INVITATION CARD (Centered in Screen via GSAP) -->
@@ -104,8 +136,7 @@
           <div class="parents-invitation-block">
             <p class="parents-honor-line">
               With divine blessings of our beloved elders & ancestors, <br>
-              <strong>Smt. Anju Bala & Sri Balwinder Kumar (Katyal Family)</strong>
-              <!-- & <br><strong>Smt. Sangeeta Bhandari & Sri Ajay Bhandari (Bhandari Family)</strong> -->
+              <strong>Smt. Anju Bala & Shri Balwinder Kumar (Katyal Family)</strong>
             </p>
             <p class="cordial-request-text font-serif">
               cordially invite you to celebrate the holy wedding union of their beloved son
@@ -115,8 +146,8 @@
           <!-- Centerpiece Couple Typography -->
           <div class="couple-spotlight-banner">
             <div class="couple-name-box">
-              <span class="c-name groom font-serif">Dhruv</span>
-              <span class="family-sub">S/o Smt. Anju Bala & Sri Balwinder Kumar</span>
+              <span class="c-name groom font-script">Dhruv</span>
+              <span class="family-sub">S/o Smt. Anju Bala & Shri Balwinder Kumar</span>
             </div>
             
             <div class="couple-knot-center">
@@ -125,8 +156,8 @@
             </div>
             
             <div class="couple-name-box">
-              <span class="c-name bride font-serif">Vaishnavi</span>
-              <span class="family-sub">D/o Smt. Sangeeta & Sri Ajay Bhandari</span>
+              <span class="c-name bride font-script">Vaishnavi</span>
+              <span class="family-sub">D/o Smt. Sangeeta & Shri Ajay Bhandari</span>
             </div>
           </div>
 

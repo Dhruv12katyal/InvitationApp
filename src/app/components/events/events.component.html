@@ -12,215 +12,240 @@
     <!-- Events Grid -->
     <div class="events-grid">
       
-      <!-- Event 1: Mehendi Celebration -->
-      <div class="event-card mehendi-theme">
-        <div class="event-header-banner">
-          <span class="function-badge">Celebration 01</span>
-          <span class="dress-tag">✨ Festive Party Wear</span>
+      <!-- Event 1: Sangeet & Mehendi Celebration -->
+      <article class="event-card mehendi-theme">
+        <div class="card-accent-bar"></div>
+
+        <!-- Card Top Bar: Ritual & Attire -->
+        <div class="card-top-bar">
+          <span class="ritual-pill">Ritual 01</span>
+          <span class="dress-code-tag">
+            <span class="dress-sparkle">✦</span> Festive Party Wear
+          </span>
         </div>
 
-        <div class="event-body">
-          <div class="ceremony-icon-circle">
-            <span class="ceremony-emoji">🌺</span>
+        <div class="card-main-content">
+          <!-- Ceremony Emblem -->
+          <div class="ceremony-emblem">
+            <span class="ceremony-icon">🌺</span>
           </div>
-          <h3 class="event-name">Sangeet / Mehandi Celebration</h3>
+
+          <h3 class="event-name">Sangeet & Mehendi</h3>
           <p class="event-tagline">"Rang Laagi Mehendi, Khushiyan Laayi Angan"</p>
 
-          <div class="event-meta-box">
-            <div class="meta-row">
-              <span class="meta-icon">📅</span>
-              <div class="meta-info">
-                <span class="meta-label">Date</span>
-                <strong class="meta-val">Friday, 16th January 2026</strong>
-              </div>
+          <!-- Sleek Date & Time Showcase -->
+          <div class="schedule-showcase">
+            <div class="date-chip">
+              <span class="chip-month">JAN</span>
+              <span class="chip-day">16</span>
+              <span class="chip-year">2026</span>
             </div>
-
-            <div class="meta-row">
-              <span class="meta-icon">⏰</span>
-              <div class="meta-info">
-                <span class="meta-label">Auspicious Time</span>
-                <strong class="meta-val highlight-time">6:00 PM Onwards</strong>
+            <div class="time-venue-info">
+              <div class="schedule-row">
+                <span class="info-icon">🗓️</span>
+                <span class="info-text">Friday • <strong>6:00 PM Onwards</strong></span>
               </div>
-            </div>
-
-            <div class="meta-row">
-              <span class="meta-icon">📍</span>
-              <div class="meta-info">
-                <span class="meta-label">Venue</span>
-                <strong class="meta-val venue-title">White Rose Banquet</strong>
-                <span class="meta-sub">Ghaziabad, Uttar Pradesh</span>
+              <div class="schedule-row venue-row">
+                <span class="info-icon">📍</span>
+                <span class="info-text">
+                  <strong class="venue-name">White Rose Banquet</strong>
+                  <span class="venue-city">Ghaziabad, Uttar Pradesh</span>
+                </span>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="event-actions">
+          <!-- Venue Map Capsule -->
+          <div class="venue-location-capsule">
+            <div class="map-window">
+              <iframe 
+                src="https://maps.google.com/maps?q=White+Rose+Banquet,+Ghaziabad&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                class="venue-map-iframe" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="White Rose Banquet Map Location">
+              </iframe>
+              <div class="map-glass-badge">
+                <span class="map-pulse">📍</span>
+                <span>White Rose Banquet</span>
+              </div>
+            </div>
             <a 
               href="https://maps.app.goo.gl/1BdDjFnvWg5mE6gVA" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="btn btn-map">
+              class="btn-maps-nav">
               <span>🗺️ Open in Google Maps</span>
+              <span class="arrow-glyph">↗</span>
             </a>
-            <div class="calendar-btn-group">
-              <a 
-                [href]="calendarService.getGoogleCalendarUrl('mehendi')" 
-                target="_blank" 
-                class="btn btn-cal">
-                <span>+ Google Cal</span>
-              </a>
-              <button 
-                type="button" 
-                (click)="calendarService.downloadIcs('mehendi')" 
-                class="btn btn-cal">
-                <span>📥 .ICS</span>
-              </button>
-            </div>
           </div>
         </div>
-      </div>
+
+        <!-- Footer Actions: Calendar Sync -->
+        <div class="card-footer-actions">
+          <span class="cal-sync-label">Add to Calendar:</span>
+          <a 
+            [href]="calendarService.getGoogleCalendarUrl('mehendi')" 
+            target="_blank" 
+            class="cal-pill">
+            <span>📅 Add to Google Calendar</span>
+          </a>
+        </div>
+      </article>
 
       <!-- Event 2: Haldi Ceremony -->
-      <div class="event-card haldi-theme">
-        <div class="event-header-banner">
-          <span class="function-badge">Celebration 02</span>
-          <span class="dress-tag">🌼 Auspicious Yellow</span>
+      <article class="event-card haldi-theme">
+        <div class="card-accent-bar"></div>
+
+        <!-- Card Top Bar: Ritual & Attire -->
+        <div class="card-top-bar">
+          <span class="ritual-pill">Ritual 02</span>
+          <span class="dress-code-tag">
+            <span class="dress-sparkle">✦</span> Auspicious Yellow
+          </span>
         </div>
 
-        <div class="event-body">
-          <div class="ceremony-icon-circle haldi-icon">
-            <span class="ceremony-emoji">✨</span>
+        <div class="card-main-content">
+          <!-- Ceremony Emblem -->
+          <div class="ceremony-emblem">
+            <span class="ceremony-icon">🌼</span>
           </div>
+
           <h3 class="event-name">Haldi Ceremony</h3>
           <p class="event-tagline">"Turmeric blessings, smiles and golden memories"</p>
 
-          <div class="event-meta-box">
-            <div class="meta-row">
-              <span class="meta-icon">📅</span>
-              <div class="meta-info">
-                <span class="meta-label">Date</span>
-                <strong class="meta-val">Saturday, 17th January 2026</strong>
-              </div>
+          <!-- Sleek Date & Time Showcase -->
+          <div class="schedule-showcase">
+            <div class="date-chip">
+              <span class="chip-month">JAN</span>
+              <span class="chip-day">17</span>
+              <span class="chip-year">2026</span>
             </div>
-
-            <div class="meta-row">
-              <span class="meta-icon">⏰</span>
-              <div class="meta-info">
-                <span class="meta-label">Auspicious Time</span>
-                <strong class="meta-val highlight-time">11:00 AM Morning Onwards</strong>
+            <div class="time-venue-info">
+              <div class="schedule-row">
+                <span class="info-icon">🗓️</span>
+                <span class="info-text">Saturday Morning • <strong>11:00 AM</strong></span>
               </div>
-            </div>
-
-            <div class="meta-row">
-              <span class="meta-icon">🏡</span>
-              <div class="meta-info">
-                <span class="meta-label">Venue</span>
-                <strong class="meta-val venue-title">At Home</strong>
-                <span class="meta-sub">Ghaziabad, Uttar Pradesh</span>
+              <div class="schedule-row venue-row">
+                <span class="info-icon">🏡</span>
+                <span class="info-text">
+                  <strong class="venue-name">At Home</strong>
+                  <span class="venue-city">Ghaziabad, Uttar Pradesh</span>
+                </span>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="event-actions">
-            <div class="home-badge">
-              <span>🏠 Intimate Family Gathering at Home</span>
-            </div>
-            <div class="calendar-btn-group">
-              <a 
-                [href]="calendarService.getGoogleCalendarUrl('haldi')" 
-                target="_blank" 
-                class="btn btn-cal">
-                <span>+ Google Cal</span>
-              </a>
-              <button 
-                type="button" 
-                (click)="calendarService.downloadIcs('haldi')" 
-                class="btn btn-cal">
-                <span>📥 .ICS</span>
-              </button>
+          <!-- Balanced Family Home Showcase matching map height -->
+          <div class="venue-location-capsule home-capsule">
+            <div class="home-crest-icon">🏡</div>
+            <strong class="home-title">Intimate Family Gathering</strong>
+            <p class="home-desc">Haldi rituals, traditional songs & ancestral blessings with close family at home.</p>
+            <div class="home-status-tag">
+              <span>✨ Family & Close Guests at Home</span>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Event 3: Shubh Vivah / Wedding -->
-      <div class="event-card wedding-theme">
-        <div class="event-header-banner">
-          <span class="function-badge royal-badge">Main Celebration</span>
-          <span class="dress-tag">👑 Traditional Indian</span>
+        <!-- Footer Actions: Calendar Sync -->
+        <div class="card-footer-actions">
+          <span class="cal-sync-label">Add to Calendar:</span>
+          <a 
+            [href]="calendarService.getGoogleCalendarUrl('haldi')" 
+            target="_blank" 
+            class="cal-pill">
+            <span>📅 Add to Google Calendar</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Event 3: Shubh Vivah (Wedding) -->
+      <article class="event-card wedding-theme">
+        <div class="card-accent-bar"></div>
+
+        <!-- Card Top Bar: Ritual & Attire -->
+        <div class="card-top-bar">
+          <span class="ritual-pill highlight-pill">Main Celebration</span>
+          <span class="dress-code-tag">
+            <span class="dress-sparkle">✦</span> Royal Traditional
+          </span>
         </div>
 
-        <div class="event-body">
-          <div class="ceremony-icon-circle wedding-icon">
-            <span class="ceremony-emoji">🪔</span>
+        <div class="card-main-content">
+          <!-- Ceremony Emblem -->
+          <div class="ceremony-emblem">
+            <span class="ceremony-icon">🪔</span>
           </div>
+
           <h3 class="event-name">Shubh Vivah (Wedding)</h3>
           <p class="event-tagline">"Baraat, Varmala, Sacred Pheras & Grand Feast"</p>
 
-          <div class="event-meta-box">
-            <div class="meta-row">
-              <span class="meta-icon">📅</span>
-              <div class="meta-info">
-                <span class="meta-label">Date</span>
-                <strong class="meta-val">Saturday, 17th January 2026 (Night)</strong>
-              </div>
+          <!-- Sleek Date & Time Showcase -->
+          <div class="schedule-showcase">
+            <div class="date-chip">
+              <span class="chip-month">JAN</span>
+              <span class="chip-day">17</span>
+              <span class="chip-year">2026</span>
             </div>
-
-            <div class="meta-row">
-              <span class="meta-icon">🥁</span>
-              <div class="meta-info">
-                <span class="meta-label">Baraat Assembly</span>
-                <strong class="meta-val highlight-time">9:00 PM Night</strong>
-                <span class="meta-sub">Varmala & Dinner to follow</span>
+            <div class="time-venue-info">
+              <div class="schedule-row">
+                <span class="info-icon">🥁</span>
+                <span class="info-text">Saturday Night • <strong>9:00 PM Baraat</strong></span>
               </div>
-            </div>
-
-            <div class="meta-row">
-              <span class="meta-icon">🏰</span>
-              <div class="meta-info">
-                <span class="meta-label">Venue</span>
-                <strong class="meta-val venue-title">Vasundhara Farm (The Party Lawn)</strong>
-                <span class="meta-sub">Vasundhara, Ghaziabad, Uttar Pradesh</span>
+              <div class="schedule-row venue-row">
+                <span class="info-icon">🏰</span>
+                <span class="info-text">
+                  <strong class="venue-name">Vasundhara Farm</strong>
+                  <span class="venue-city">Vasundhara, Ghaziabad, UP</span>
+                </span>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="event-actions">
+          <!-- Venue Map Capsule -->
+          <div class="venue-location-capsule">
+            <div class="map-window">
+              <iframe 
+                src="https://maps.google.com/maps?q=Vasundhara+Farm,+Vasundhara,+Ghaziabad&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                class="venue-map-iframe" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Vasundhara Farm Map Location">
+              </iframe>
+              <div class="map-glass-badge">
+                <span class="map-pulse">📍</span>
+                <span>Vasundhara Farm</span>
+              </div>
+            </div>
             <a 
               href="https://maps.app.goo.gl/wcQUgz2QK8fYci4L9" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="btn btn-map">
+              class="btn-maps-nav">
               <span>🗺️ Open in Google Maps</span>
+              <span class="arrow-glyph">↗</span>
             </a>
-            <div class="calendar-btn-group">
-              <a 
-                [href]="calendarService.getGoogleCalendarUrl('wedding')" 
-                target="_blank" 
-                class="btn btn-cal">
-                <span>+ Google Cal</span>
-              </a>
-              <button 
-                type="button" 
-                (click)="calendarService.downloadIcs('wedding')" 
-                class="btn btn-cal">
-                <span>📥 .ICS</span>
-              </button>
-            </div>
           </div>
         </div>
-      </div>
+
+        <!-- Footer Actions: Calendar Sync -->
+        <div class="card-footer-actions">
+          <span class="cal-sync-label">Add to Calendar:</span>
+          <a 
+            [href]="calendarService.getGoogleCalendarUrl('wedding')" 
+            target="_blank" 
+            class="cal-pill">
+            <span>📅 Add to Google Calendar</span>
+          </a>
+        </div>
+      </article>
 
     </div>
 
-        <!-- Venue Navigation Quick Note for Elders -->
-    <div class="elder-navigation-note">
-      <span class="note-icon">ℹ️</span>
-      <p>
-        <strong>Note for Guests:</strong> Tapping <em>"Open in Google Maps"</em> above launches GPS navigation directly on your phone.
-      </p>
+    <!-- Sleek Guest Navigation Tip -->
+    <div class="guest-itinerary-tip">
+      <span class="tip-gem">✨</span>
+      <span>Tap <strong>"Open in Google Maps"</strong> on any venue card to launch turn-by-turn navigation directly on your phone.</span>
     </div>
   </div>
 </section>

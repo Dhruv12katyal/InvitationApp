@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     { id: 'hero', label: 'Home', shortLabel: 'Home', icon: '🏠' },
     { id: 'invitation-unfold', label: 'Invitation', shortLabel: 'Invitation', icon: '✉️' },
     { id: 'events', label: 'Functions', shortLabel: 'Events', icon: '🗓️' },
-    { id: 'couple', label: 'The Couple', shortLabel: 'Couple', icon: '👑' },
     // { id: 'rsvp', label: 'RSVP', shortLabel: 'RSVP', icon: '💌', isSpecial: true }
   ];
 

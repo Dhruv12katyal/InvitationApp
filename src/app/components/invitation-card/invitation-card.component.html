@@ -1,104 +1,63 @@
-<section id="invitation-unfold" class="envelope-experience-section">
+<section id="invitation-unfold" class="wedding-card-section">
   <div class="container">
     
     <!-- Section Header -->
     <div class="section-header">
-      <span class="badge badge-gold">॥ शुभ निमंत्रण ॥</span>
-      <h2 class="section-title font-serif">Wedding Invitation</h2>
+      <span class="gold-badge">✦ SACRED WEDDING INVITATION ✦</span>
+      <h2 class="section-title">The Wedding Invitation</h2>
       <p class="section-subtitle font-sans">
         A cordial invitation from the Katyal & Bhandari Families to grace the auspicious occasion
       </p>
     </div>
 
-    <!-- Main Envelope Experience Stage -->
-    <div class="inner-envelope-stage-container">
+    <!-- Direct Royal Wedding Invitation Card Stage -->
+    <div class="royal-card-stage">
       
-      <div class="envelope-interactive-rig" [class.is-open]="isEnvelopeOpen()">
+      <!-- Surrounding Ambient Glow Aura -->
+      <div class="card-ambient-glow" aria-hidden="true"></div>
 
-        <!-- 1. Corner Floral Bouquets (Active on closed envelope) -->
-        <div #topBouquet class="inner-flower-bouquet bouquet-top-right">
-          <img src="assets/images/bouquet.png" alt="Floral decor" class="bouquet-img">
-        </div>
-        <div #bottomBouquet class="inner-flower-bouquet bouquet-bottom-left">
-          <img src="assets/images/bouquet.png" alt="Floral decor" class="bouquet-img">
-        </div>
+      <!-- Surrounding Corner Floral Bouquets -->
+      <div #topBouquet class="card-flower-bouquet bouquet-top-right" aria-hidden="true">
+        <img src="assets/images/bouquet.png" alt="Auspicious Floral Bouquet" class="bouquet-img">
+      </div>
+      <div #bottomBouquet class="card-flower-bouquet bouquet-bottom-left" aria-hidden="true">
+        <img src="assets/images/bouquet.png" alt="Auspicious Floral Bouquet" class="bouquet-img">
+      </div>
 
-        <!-- 2. STEADY ENVELOPE SLEEVE & FLAP UNIT -->
-        <div #envelopeBox class="envelope-steady-box" (click)="!isEnvelopeOpen() ? openEnvelope() : null">
-          
-          <!-- Back Interior Lining -->
-          <div class="envelope-back-lining">
-            <div class="inner-gold-watermark font-devanagari">शुभ विवाह</div>
-          </div>
+      <!-- THE ROYAL WEDDING INVITATION CARD -->
+      <article #letter class="royal-wedding-letter-card">
+        
+        <!-- Animated Golden Sheen Sweep -->
+        <div class="card-gold-sheen" aria-hidden="true"></div>
 
-          <!-- FRONT SLEEVE POCKET -->
-          <div #pocket class="sleeve-pocket-base">
-            <div class="sleeve-pattern-overlay"></div>
-            <div class="sleeve-gold-trim"></div>
-            <div class="sleeve-notched-mouth"></div>
-          </div>
+        <!-- 4 Ornate Gold Corner Filigrees -->
+        <div class="card-filigree filigree-tl" aria-hidden="true">❦</div>
+        <div class="card-filigree filigree-tr" aria-hidden="true">❦</div>
+        <div class="card-filigree filigree-bl" aria-hidden="true">❦</div>
+        <div class="card-filigree filigree-br" aria-hidden="true">❦</div>
 
-          <!-- UPPER 3D FOLDING FLAP (Layered under seal, flips up 180deg) -->
-          <div 
-            #flap 
-            class="sleeve-top-flap" 
-            [class.open-flap-transparent]="isEnvelopeOpen()"
-            (click)="toggleEnvelope(); $event.stopPropagation()"
-            [title]="isEnvelopeOpen() ? 'Click upper fold to fold envelope' : 'Click to open envelope'"
-            role="button"
-            tabindex="0"
-            [attr.aria-label]="isEnvelopeOpen() ? 'Click upper fold to fold envelope' : 'Click to open envelope'">
-            <div class="flap-surface">
-              <div class="flap-crease-lines"></div>
-              @if (isEnvelopeOpen()) {
-                <div class="flap-refold-hint font-devanagari">
-                  <span>▲ संपुट बंद करें (Click fold to re-close)</span>
-                </div>
-              }
-            </div>
-          </div>
+        <!-- Gilded Outer-to-Inner Border Frame -->
+        <div class="card-gilded-border">
+          <div class="card-inner-hairline">
 
-          <!-- 3D BURGUNDY & GOLD WAX SEAL (STRICTLY ON TOP OF FLAP TIP) -->
-          <button 
-            #seal
-            type="button" 
-            class="sleeve-wax-seal" 
-            (click)="openEnvelope(); $event.stopPropagation()" 
-            aria-label="Open Wedding Invitation Envelope"
-            title="Tap Wax Seal to Open">
-            <div class="seal-inner-emboss">
-              <span class="seal-monogram font-script">D & V</span>
-              <span class="seal-hindi font-devanagari">शुभ विवाह</span>
-            </div>
-            <div class="seal-pulse-glow"></div>
-          </button>
-
-        </div>
-
-        <!-- 3. ROYAL WEDDING INVITATION LETTER (Reveals steadily when opened) -->
-        <div #letter class="sliding-parchment-letter">
-          <div class="card-gilded-border">
-            
-            <!-- Ganesha Invocation on Card -->
-            <div class="letter-ganesh-header">
+            <!-- Sacred Ganesha Invocation Header -->
+            <header class="letter-ganesh-header">
               <span class="letter-om font-devanagari">卐 ॥ श्री गणेशाय नमः ॥ 卐</span>
               <p class="letter-shloka">
                 "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ। निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥"
               </p>
-            </div>
+            </header>
 
+            <!-- Letter Content Body -->
             <div class="letter-content-body">
               <p class="greeting-line font-serif">
                 With the divine grace of the Almighty and blessings of our ancestors,
               </p>
 
               <h2 class="letter-family-title">
-                Smt. Anju Bala & Sri Balwinder Kumar
-                <!-- <br><span class="hosts-and-sep">&</span> <br>
-                Smt. Sangeeta Bhandari & Sri Ajay Bhandari -->
+                Smt. Anju Bala & Shri Balwinder Kumar
               </h2>
               <p class="families-sub">Katyal Family (Ghaziabad)</p>
-              <!-- <p class="families-sub">Together with the Katyal & Bhandari Families</p> -->
 
               <p class="letter-cordially font-serif">
                 Cordially invite you to celebrate the joyous wedding union of their beloved son
@@ -108,7 +67,7 @@
               <div class="letter-couple-highlight">
                 <div class="person-box">
                   <h3 class="royal-name">Dhruv</h3>
-                  <span class="family-tag">S/o Smt. Anju Bala & Sri Balwinder Kumar (Katyal Family)</span>
+                  <span class="family-tag">S/o Smt. Anju Bala & Shri Balwinder Kumar (Katyal Family)</span>
                 </div>
 
                 <div class="wedding-knot-badge">
@@ -118,7 +77,7 @@
 
                 <div class="person-box">
                   <h3 class="royal-name">Vaishnavi</h3>
-                  <span class="family-tag">D/o Smt. Sangeeta Bhandari & Sri Ajay Bhandari (Bhandari Family)</span>
+                  <span class="family-tag">D/o Smt. Sangeeta Bhandari & Shri Ajay Bhandari (Bhandari Family)</span>
                 </div>
               </div>
 
@@ -165,26 +124,25 @@
               </div>
 
               <!-- Bottom Regards & Celebrations Link -->
-              <div class="letter-footer">
+              <footer class="letter-footer">
                 <p class="closing-regards">
-                    With Warm Regards & Best Compliments, <br>
-                    <strong>Smt. Anju Bala & Sri Balwinder Kumar (Katyal Family - Ghaziabad)</strong>
-                    <!-- <br><strong>& Smt. Sangeeta Bhandari & Sri Ajay Bhandari (Bhandari Family - Zirakpur)</strong> -->
-                  </p>
+                  With Warm Regards & Best Compliments, <br>
+                  <strong>Smt. Anju Bala & Shri Balwinder Kumar (Katyal Family - Ghaziabad)</strong>
+                </p>
 
                 <div class="letter-action-btns">
-                  <a href="#events" class="btn btn-primary">
-                    <span>View Celebrations Itinerary</span>
-                    <span>↓</span>
-                  </a>
+                  <button type="button" class="btn btn-secondary blessing-btn" (click)="fireBlessingsConfetti()">
+                    <span>Shower Blessings</span>
+                    <span>🌸</span>
+                  </button>
                 </div>
-              </div>
+              </footer>
 
             </div>
           </div>
         </div>
 
-      </div>
+      </article>
 
     </div>
 

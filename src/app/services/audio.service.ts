@@ -21,7 +21,7 @@ export class AudioService {
       try {
         this.audio = new Audio('assets/audio/sahilmadan-wedding-invitation-421393.mp3');
         this.audio.loop = true;
-        this.audio.preload = 'auto';
+        this.audio.preload = 'none';
         this.audio.volume = 0; // Starts at 0 for smooth fade-in
 
         this.audio.addEventListener('play', () => this.isPlaying.set(true));

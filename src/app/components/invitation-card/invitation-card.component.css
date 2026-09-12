@@ -1,7 +1,10 @@
+/* ==========================================================================
+   Royal Wedding Invitation Letter Card (Direct Display with Bouquets & Glow)
+   ========================================================================== */
 
-.envelope-experience-section {
-  padding: 40px 16px 45px;
-  background: radial-gradient(circle at 50% 30%, #F9EBF1 0%, #F2F0EF 100%);
+.wedding-card-section {
+  padding: 32px 16px 32px;
+  background: radial-gradient(circle at 50% 25%, #F9EBF1 0%, #F4ECEF 45%, #EAE4E7 100%);
   position: relative;
   overflow: hidden;
 }
@@ -9,13 +12,16 @@
 .section-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto 24px;
+  margin: 0 auto 16px;
 }
 
 .section-title {
-  font-size: clamp(1.9rem, 5vw, 2.7rem);
-  margin: 10px 0 6px;
+  font-family: var(--font-calligraphy);
+  font-size: clamp(2.8rem, 7vw, 4.2rem);
+  font-weight: 400;
+  margin: 6px 0 6px;
   color: var(--burgundy-primary);
+  line-height: 1.15;
 }
 
 .section-subtitle {
@@ -23,402 +29,274 @@
   color: var(--text-muted);
 }
 
-.inner-envelope-stage-container {
-  max-width: 760px;
-  margin: 0 auto;
+/* ==========================================================================
+   Stage & Surrounding Composition
+   ========================================================================== */
+
+.royal-card-stage {
+  max-width: 740px;
+  margin: 18px auto 10px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Master Envelope Rig */
-.envelope-interactive-rig {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  perspective: 2000px;
-}
-
-/* Steady 3D Envelope Box */
-.envelope-steady-box {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  height: 310px;
-  border-radius: 14px;
-  perspective: 1500px;
-  transform-style: preserve-3d;
-  box-shadow: 0 16px 45px rgba(102, 0, 51, 0.22), 0 0 0 1.5px rgba(212, 175, 55, 0.4);
-  background: #3B001D;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  z-index: 10;
-  cursor: pointer;
-  margin: 0 auto;
-}
-
-.envelope-interactive-rig.is-open .envelope-steady-box {
+/* Radiant Ambient Glow Behind Card */
+.card-ambient-glow {
   position: absolute;
-  top: 0;
-  opacity: 0.15;
+  inset: -25px;
+  border-radius: 40px;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.42) 0%, rgba(138, 13, 75, 0.22) 42%, rgba(102, 0, 51, 0.08) 68%, transparent 80%);
+  filter: blur(36px);
+  animation: cardAuraPulse 4.5s infinite alternate ease-in-out;
   pointer-events: none;
-  z-index: 5;
-}
-
-/* Back Lining */
-.envelope-back-lining {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #4A0025 0%, #2A0015 100%);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 1;
 }
 
-.inner-gold-watermark {
-  font-size: 2.2rem;
-  color: rgba(212, 175, 55, 0.15);
-  font-weight: 700;
-  letter-spacing: 2px;
+@keyframes cardAuraPulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.97);
+    filter: blur(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.03);
+    filter: blur(42px);
+  }
 }
 
-/* Front Sleeve Pocket Base */
-.sleeve-pocket-base {
+/* Corner Flower Bouquets Framing the Card at Outer Corners */
+.card-flower-bouquet {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #8A0D4B 0%, #660033 60%, #4A0025 100%);
-  border-radius: 14px;
-  overflow: hidden;
-  z-index: 10;
-  will-change: transform, opacity;
-}
-
-.sleeve-pattern-overlay {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.14) 1px, transparent 1px);
-  background-size: 18px 18px;
-  opacity: 0.75;
-}
-
-.sleeve-gold-trim {
-  position: absolute;
-  inset: 7px;
-  border: 1.5px solid rgba(212, 175, 55, 0.45);
-  border-radius: 10px;
-  pointer-events: none;
-}
-
-.sleeve-notched-mouth {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 48px;
-  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, transparent 100%);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-}
-
-/* UPPER 3D FOLDING FLAP */
-.sleeve-top-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 160px;
-  transform-origin: top center;
-  transform-style: preserve-3d;
-  z-index: 20; /* Flap is under the seal (z-index: 35) */
-  filter: drop-shadow(0 6px 14px rgba(102, 0, 51, 0.35));
-  will-change: transform, opacity;
-  cursor: pointer;
-  transition: opacity 0.5s ease;
-}
-
-.flap-surface {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #8A0D4B 0%, #660033 60%, #4A0025 100%);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 18px;
-}
-
-.flap-crease-lines {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, transparent 70%);
-}
-
-/* When letter is open: flap sits above letter with minimal transparency */
-.sleeve-top-flap.open-flap-transparent {
-  opacity: 0.58;
-  filter: drop-shadow(0 -6px 16px rgba(102, 0, 51, 0.35));
-  z-index: 35;
-  pointer-events: auto;
-  cursor: pointer;
-  border-top: 1.5px solid rgba(212, 175, 55, 0.7);
-  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
-}
-
-.sleeve-top-flap.open-flap-transparent:hover {
-  opacity: 0.92;
-  filter: drop-shadow(0 -8px 22px rgba(212, 175, 55, 0.6));
-  transform: translateY(-2px);
-}
-
-.flap-refold-hint {
-  position: relative;
-  z-index: 5;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #FAF9F8;
-  background: linear-gradient(135deg, rgba(102, 0, 51, 0.92) 0%, rgba(74, 0, 37, 0.95) 100%);
-  border: 1.5px solid #D4AF37;
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
-  letter-spacing: 0.5px;
-  transform: rotate(180deg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
-}
-
-/* 3D BURGUNDY & GOLD WAX SEAL (ALWAYS ON TOP OF FLAP) */
-.sleeve-wax-seal {
-  position: absolute;
-  top: 160px; /* Aligned right at the tip of the flap */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 35; /* Higher than flap (z-index: 20) and pocket (z-index: 10) */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  touch-action: manipulation;
-  padding: 0;
-  will-change: transform, opacity;
-}
-
-.seal-inner-emboss {
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #8A0D4B 0%, #660033 55%, #33001A 100%);
-  border: 2.5px solid #D4AF37;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.6);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  transition: transform 0.2s ease;
-}
-
-.sleeve-wax-seal:hover .seal-inner-emboss {
-  transform: scale(1.06);
-}
-
-.seal-monogram {
-  font-size: 1.02rem;
-  color: #F9F1D8;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  white-space: nowrap;
-  display: block;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
-  margin-top: 1px;
-}
-
-.seal-hindi {
-  font-size: 0.52rem;
-  color: #F9F1D8;
-  letter-spacing: 0.5px;
-  opacity: 0.92;
-  white-space: nowrap;
-}
-
-.seal-pulse-glow {
-  position: absolute;
-  inset: -5px;
-  border-radius: 50%;
-  border: 2px solid #D4AF37;
-  animation: sealAuraPulse 2.2s infinite ease-in-out;
-  pointer-events: none;
-}
-
-@keyframes sealAuraPulse {
-  0% { transform: scale(0.96); opacity: 0.85; }
-  50% { transform: scale(1.2); opacity: 0.15; }
-  100% { transform: scale(1.32); opacity: 0; }
-}
-
-/* Corner Flower Bouquets */
-.inner-flower-bouquet {
-  position: absolute;
-  width: clamp(140px, 34vw, 190px);
+  width: clamp(130px, 24vw, 175px);
   aspect-ratio: 1 / 1;
   pointer-events: none;
-  z-index: 12;
-  will-change: transform, opacity;
-  transition: opacity 0.5s ease;
-}
-
-.envelope-interactive-rig.is-open .inner-flower-bouquet {
-  opacity: 0;
+  z-index: 30; /* Prominently visible in front framing the card corners */
+  will-change: transform;
 }
 
 .bouquet-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 22px rgba(102, 0, 51, 0.16));
+  filter: drop-shadow(0 10px 22px rgba(102, 0, 51, 0.32));
 }
 
 .bouquet-top-right {
-  top: -36px;
-  right: calc(50% - 240px - 40px);
-  transform: rotate(15deg);
-  animation: bouquetFloatRight 4s infinite alternate ease-in-out;
+  top: -38px;
+  right: -32px;
+  transform: rotate(20deg);
+  animation: bouquetFloatTR 5s infinite alternate ease-in-out;
 }
 
 .bouquet-bottom-left {
-  bottom: -36px;
-  left: calc(50% - 240px - 40px);
-  transform: rotate(-10deg);
-  animation: bouquetFloatLeft 4.5s infinite alternate ease-in-out;
+  bottom: -38px;
+  left: -32px;
+  transform: rotate(-14deg);
+  animation: bouquetFloatBL 5.5s infinite alternate ease-in-out;
 }
 
-@keyframes bouquetFloatRight {
-  0% { transform: rotate(15deg) translate(0, 0); }
-  100% { transform: rotate(18deg) translate(4px, -6px); }
+@keyframes bouquetFloatTR {
+  0% { transform: rotate(24deg) translate(0, 0); }
+  100% { transform: rotate(27deg) translate(6px, -8px); }
 }
 
-@keyframes bouquetFloatLeft {
-  0% { transform: rotate(-10deg) translate(0, 0); }
-  100% { transform: rotate(-13deg) translate(-4px, 6px); }
+@keyframes bouquetFloatBL {
+  0% { transform: rotate(-16deg) translate(0, 0); }
+  100% { transform: rotate(-13deg) translate(-6px, 8px); }
 }
 
-/* ROYAL WEDDING INVITATION CARD (Sliding letter) */
-.sliding-parchment-letter {
+/* ==========================================================================
+   The Royal Wedding Invitation Letter Card
+   ========================================================================== */
+
+.royal-wedding-letter-card {
   position: relative;
-  z-index: 20;
-  background: #FAF9F8;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 60px rgba(102, 0, 51, 0.2), 0 0 0 2px var(--gold-primary);
+  z-index: 10;
   width: 100%;
-  max-width: 720px;
-  transform-style: preserve-3d;
+  background: radial-gradient(circle at 50% 12%, #FFFFFF 0%, #FAF8F5 50%, #F5EFE9 100%);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 25px 70px rgba(102, 0, 51, 0.18),
+    0 0 0 2.5px var(--gold-primary),
+    0 0 35px rgba(212, 175, 55, 0.35);
+  overflow: hidden;
   will-change: transform, opacity;
-  display: none; /* No space consumed when closed! */
-  margin: 0 auto;
+  transition: box-shadow 0.4s ease;
 }
 
+.royal-wedding-letter-card:hover {
+  box-shadow: 
+    0 30px 80px rgba(102, 0, 51, 0.24),
+    0 0 0 2.5px var(--gold-bright),
+    0 0 45px rgba(212, 175, 55, 0.5);
+}
+
+/* Subtle Golden Sheen Reflection Sweep */
+.card-gold-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 248, 220, 0.22) 46%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 248, 220, 0.22) 54%,
+    transparent 62%,
+    transparent 100%
+  );
+  background-size: 260% 100%;
+  animation: sheenGlide 7s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 20;
+  border-radius: inherit;
+}
+
+@keyframes sheenGlide {
+  0% { background-position: 200% 0; }
+  50%, 100% { background-position: -80% 0; }
+}
+
+/* Ornate Corner Filigrees */
+.card-filigree {
+  position: absolute;
+  font-size: 1.4rem;
+  color: var(--gold-primary);
+  line-height: 1;
+  z-index: 22;
+  pointer-events: none;
+  text-shadow: 0 1px 3px rgba(197, 155, 39, 0.5);
+}
+
+.filigree-tl { top: 16px; left: 18px; transform: rotate(-45deg); }
+.filigree-tr { top: 16px; right: 18px; transform: rotate(45deg); }
+.filigree-bl { bottom: 16px; left: 18px; transform: rotate(-135deg); }
+.filigree-br { bottom: 16px; right: 18px; transform: rotate(135deg); }
+
+/* Gilded Frames */
 .card-gilded-border {
   border: 2px solid var(--gold-primary);
-  border-radius: var(--radius-lg);
-  margin: 8px;
+  border-radius: 20px;
+  margin: 10px;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.card-inner-hairline {
+  border: 1px dashed rgba(197, 155, 39, 0.45);
+  border-radius: 14px;
+  margin: 5px;
   overflow: hidden;
 }
 
+/* Ganesha Invocation Crest */
 .letter-ganesh-header {
-  background: linear-gradient(135deg, #660033 0%, #4A0025 100%);
+  background: linear-gradient(135deg, #660033 0%, #4A0025 60%, #33001A 100%);
   color: #FAF9F8;
-  padding: 22px 16px;
+  padding: 24px 85px; /* Safe padding keeps text away from top-right corner bouquet */
   text-align: center;
   border-bottom: 2px solid var(--gold-primary);
+  box-shadow: 0 4px 14px rgba(102, 0, 51, 0.25);
+  position: relative;
 }
 
 .letter-om {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   color: var(--gold-light);
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(249, 231, 181, 0.5);
 }
 
 .letter-shloka {
-  font-size: 0.9rem;
+  font-size: 0.94rem;
   color: #FAF9F8;
   font-style: italic;
-  max-width: 580px;
+  max-width: 480px;
   margin: 0 auto;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  opacity: 0.96;
 }
 
+/* Letter Content Body */
 .letter-content-body {
-  padding: 36px 20px;
+  padding: 38px 24px;
   text-align: center;
 }
 
 .greeting-line {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: var(--text-muted);
   margin-bottom: 6px;
+  font-style: italic;
 }
 
 .letter-family-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-size: clamp(1.85rem, 4.6vw, 2.5rem);
   color: var(--burgundy-primary);
   margin-bottom: 4px;
+  line-height: 1.2;
 }
 
 .families-sub {
-  font-size: 0.92rem;
+  font-family: var(--font-heading-clean);
+  font-size: 0.84rem;
   color: var(--gold-dark);
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.2px;
 }
 
 .letter-cordially {
-  font-size: 1.05rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
   color: var(--text-dark);
   max-width: 650px;
-  margin: 0 auto 24px;
+  margin: 0 auto 26px;
   line-height: 1.6;
 }
 
+/* Couple Centerpiece */
 .letter-couple-highlight {
   background: var(--bg-ivory-warm);
   border: 1.5px solid var(--gold-border);
   border-radius: var(--radius-md);
-  padding: 20px 16px;
+  padding: 22px 18px;
   max-width: 620px;
-  margin: 0 auto 24px;
+  margin: 0 auto 28px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   gap: 16px;
+  box-shadow: inset 0 0 16px rgba(212, 175, 55, 0.08);
 }
 
 .royal-name {
-  font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-family: var(--font-calligraphy);
+  font-weight: 400;
+  font-size: clamp(2.7rem, 6.5vw, 3.6rem);
+  letter-spacing: 0.5px;
   color: var(--burgundy-primary);
   line-height: 1.1;
 }
 
 .family-tag {
-  font-size: 0.78rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
   color: var(--gold-dark);
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 500;
   display: block;
   margin-top: 2px;
 }
@@ -431,27 +309,29 @@
 
 .knot-script {
   font-family: var(--font-script);
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   color: var(--burgundy-primary);
   line-height: 1;
 }
 
 .knot-txt {
+  font-family: var(--font-heading-clean);
   font-size: 0.72rem;
   color: var(--gold-dark);
   font-weight: 800;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
 /* Sacred Pheras Mandap Feature */
 .pheras-feature-card {
-  max-width: 480px;
-  margin: 0 auto 26px;
+  max-width: 490px;
+  margin: 0 auto 28px;
   background: linear-gradient(135deg, #660033 0%, #4A0025 100%);
   border: 1.5px solid var(--gold-primary);
   border-radius: var(--radius-lg);
   padding: 18px;
-  box-shadow: 0 8px 24px rgba(102, 0, 51, 0.08);
+  box-shadow: 0 10px 28px rgba(102, 0, 51, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -520,9 +400,10 @@
 }
 
 .pheras-title {
+  font-family: var(--font-title);
   font-size: 1.20rem;
-  color: #F9F1D8;
-  font-weight: 700;
+  color: #FDF3DB;
+  font-weight: 600;
   margin-bottom: 6px;
   letter-spacing: 0.5px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -542,7 +423,7 @@
 /* Ceremonies Summary */
 .letter-events-list {
   max-width: 620px;
-  margin: 0 auto 26px;
+  margin: 0 auto 28px;
   background: #FAF9F8;
   border: 1px solid var(--gold-border);
   border-radius: var(--radius-md);
@@ -562,46 +443,143 @@
 
 .item-emoji { font-size: 1.2rem; }
 
+/* Letter Footer */
 .letter-footer {
-  border-top: 1px dashed rgba(212, 175, 55, 0.3);
-  padding-top: 20px;
+  border-top: 1px dashed rgba(212, 175, 55, 0.35);
+  padding: 24px 85px 12px; /* Safe padding keeps text away from bottom-left corner bouquet */
 }
 
 .closing-regards {
-  font-size: 0.98rem;
+  font-size: 1rem;
   color: var(--burgundy-primary);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   line-height: 1.6;
+  font-family: var(--font-serif);
+  font-style: italic;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.closing-regards strong {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.18rem;
+  color: var(--burgundy-primary);
 }
 
 .letter-action-btns {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
-@media (max-width: 600px) {
-  .envelope-experience-section { padding: 30px 12px 35px; }
-  .inner-envelope-stage-container { padding: 0 8px; }
-  .envelope-steady-box { max-width: 330px; height: 220px; }
-  .sleeve-top-flap { height: 115px; }
-  .sleeve-wax-seal { top: 115px; width: 62px; height: 62px; }
-  .seal-inner-emboss { width: 56px; height: 56px; }
-  .bouquet-top-right { right: -15px; top: -20px; }
-  .bouquet-bottom-left { left: -15px; bottom: -20px; }
-  .letter-couple-highlight { flex-direction: column; gap: 10px; }
-  .pheras-feature-card { padding: 10px; max-width: 100%; }
-  .pheras-jharokha-frame { max-width: 280px; }
-  .pheras-shloka-text { font-size: 0.78rem; }
+.blessing-btn {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.18) 0%, rgba(197, 155, 39, 0.3) 100%);
+  border: 1.5px solid var(--gold-primary);
+  color: var(--burgundy-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
-.hosts-and-sep {
-  font-family: var(--font-script);
-  font-size: 1.8rem;
-  color: var(--gold-dark);
-  line-height: 1;
-  display: inline-block;
-  margin: 2px 0;
+.blessing-btn:hover {
+  background: var(--gold-gradient);
+  color: #33001A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
+}
+
+/* ==========================================================================
+   Mobile & Responsive Adjustments
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .wedding-card-section {
+    padding: 24px 10px 24px;
+  }
+
+  .royal-card-stage {
+    padding: 0 4px;
+  }
+
+  .card-ambient-glow {
+    inset: -15px;
+    filter: blur(25px);
+  }
+
+  .card-flower-bouquet {
+    width: clamp(95px, 24vw, 130px);
+  }
+
+  .bouquet-top-right {
+    top: -24px;
+    right: -20px;
+  }
+
+  .bouquet-bottom-left {
+    bottom: -24px;
+    left: -20px;
+  }
+
+  .letter-ganesh-header {
+    padding: 20px 48px;
+  }
+
+  .letter-footer {
+    padding: 20px 48px 10px;
+  }
+
+  .card-gilded-border {
+    margin: 6px;
+    border-radius: 16px;
+  }
+
+  .card-inner-hairline {
+    margin: 3px;
+    border-radius: 12px;
+  }
+
+  .card-filigree {
+    font-size: 1.1rem;
+  }
+
+  .filigree-tl { top: 10px; left: 12px; }
+  .filigree-tr { top: 10px; right: 12px; }
+  .filigree-bl { bottom: 10px; left: 12px; }
+  .filigree-br { bottom: 10px; right: 12px; }
+
+  .letter-content-body {
+    padding: 24px 12px;
+  }
+
+  .letter-couple-highlight {
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 12px;
+  }
+
+  .pheras-feature-card {
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  .pheras-jharokha-frame {
+    max-width: 270px;
+  }
+
+  .pheras-shloka-text {
+    font-size: 0.78rem;
+  }
+
+  .letter-events-list {
+    padding: 12px;
+  }
+
+  .event-summary-item {
+    font-size: 0.86rem;
+  }
 }

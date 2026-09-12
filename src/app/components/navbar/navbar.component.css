@@ -115,18 +115,20 @@
 }
 
 .logo-couple-names {
-  font-family: var(--font-serif);
+  font-family: var(--font-title);
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.4px;
   color: var(--maroon-royal);
   line-height: 1.15;
 }
 
 .logo-tagline {
-  font-size: 0.65rem;
+  font-family: var(--font-heading-clean);
+  font-size: 0.62rem;
   color: var(--gold-dark);
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
@@ -361,15 +363,20 @@
 }
 
 .drawer-names {
-  font-size: 1.45rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.55rem;
   color: var(--maroon-royal);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
 }
 
 .drawer-date {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-family: var(--font-heading-clean);
+  font-size: 0.74rem;
+  letter-spacing: 0.8px;
+  color: var(--gold-dark);
+  font-weight: 600;
 }
 
 .drawer-close-btn {
